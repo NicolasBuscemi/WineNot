@@ -1,0 +1,150 @@
+/* General Styles */
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, p, a {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+h1 {
+    font-size: 2em; 
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.navbar-left h1 {
+    margin: 0;
+    font-size: 25px;
+    font-family: 'Tw Cen MT', sans-serif;
+}
+
+.navbar-center ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-center ul li {
+    display: inline;
+}
+
+.navbar-center ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar-center ul li a:hover {
+    color: #BFDFC0; 
+}
+
+.navbar-right .discover-button {
+    background-color: #BFDFC0;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navbar-right .discover-button:hover {
+    background-color: #0b0b0b;
+}
+
+/* Banner Section */
+.banner-section {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.banner-text {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #BFDFC0;
+    
+}
+
+.banner-text h1 {
+    font-family: 'Tw Cen MT', sans-serif;
+    font-size: 40em; 
+    color: #ffffff;
+    margin: 0;
+    white-space: nowrap;
+    animation: bannerAnimation 7s linear infinite;
+}
+
+@keyframes bannerAnimation {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .banner-section {
+        min-height: 400px;
+    }
+
+    .banner-text h1 {
+        font-size: 3em;
+    }
+
+    .navbar-left h1 {
+        font-size: 20px;
+    }
+
+    .navbar-right .discover-button {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-section {
+        min-height: 300px;
+    }
+
+    .banner-text h1 {
+        font-size: 2em;
+    }
+
+    .navbar-left h1 {
+        font-size: 18px;
+    }
+
+    .navbar-right .discover-button {
+        padding: 6px 12px;
+    }
+}
