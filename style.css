@@ -6,6 +6,11 @@
     --hover-accent-color: #ff3d2e;
     --white: #ffffff;
     --font-family: 'Helvetica', 'Arial', sans-serif;
+    --large-font-size: 2em;
+    --medium-font-size: 1.5em;
+    --small-font-size: 1em;
+    --banner-font-size: 40em;
+    --slide-number-size: 40em;
 }
 
 *,
@@ -20,12 +25,16 @@ body {
     padding: 0;
 }
 
-h1, h2, h3, p, a {
-    font-family: var(--font-family);
+h1,
+h2,
+h3,
+p,
+a {
+    font-family: var(--font-family, 'Helvetica', 'Arial', sans-serif);
 }
 
 h1 {
-    font-size: 2em;
+    font-size: var(--large-font-size);
 }
 
 nav {
@@ -38,7 +47,7 @@ nav {
 
 .navbar-left h1 {
     margin: 0;
-    font-size: 25px;
+    font-size: var(--medium-font-size);
     font-family: 'Tw Cen MT', sans-serif;
 }
 
@@ -109,17 +118,18 @@ nav {
 
 .banner-text h1 {
     font-family: 'Tw Cen MT', sans-serif;
-    font-size: 40em;
+    font-size: var(--banner-font-size);
     color: var(--white);
     margin: 0;
     white-space: nowrap;
-    animation: bannerAnimation 7s linear infinite;
+    animation: bannerAnimation 15s linear infinite;
 }
 
 @keyframes bannerAnimation {
     0% {
         transform: translateX(100%);
     }
+
     100% {
         transform: translateX(-100%);
     }
@@ -127,7 +137,7 @@ nav {
 
 /* About Section */
 #about {
-    background-color: #ffffff;
+    background-color: var(--white);
     padding: 50px 20px;
     display: flex;
     align-items: center;
@@ -142,17 +152,23 @@ nav {
 
 .about-image {
     max-width: 100%;
-    height: auto; 
-    width: auto; 
-    max-height: 400px; 
+    height: auto;
+    width: auto;
+    max-height: 400px;
 }
 
 .about-text {
     max-width: 500px;
+    font-size: var(--small-font-size);
+    line-height: 1.6;
+    color: var(--primary-color);
 }
 
-.about-text h2 {
+.about-text h1 {
     margin-top: 0;
+    font-family: 'Tw Cen MT', sans-serif;
+    font-size: var(--large-font-size);
+    
 }
 
 .about-button {
@@ -167,8 +183,100 @@ nav {
 
 .about-button:hover {
     background-color: var(--secondary-color);
-    color: var(--primary-color) ;
+    color: var(--primary-color);
 }
+
+/* TOP10 Section */
+#top10 {
+    background-color: var(--secondary-color);
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-10-container {
+    display: flex;
+    overflow: hidden;
+}
+
+.slideshow {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.top10-image img {
+    max-width: 600px;
+    max-height: 600px;
+    width: auto;
+    height: auto;
+}
+
+.top10-box {
+    background-color: var(--primary-color);
+    display: none;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+}
+
+.top10-box:first-child {
+    display: flex;
+}
+
+.top10-text {
+    color: var(--white);
+    flex: 2;
+    padding-left: 50px;
+    margin-right: 40px;
+}
+
+.slide-number {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(70%, -50%);
+    font-size: var(--slide-number-size);
+    font-weight: bold;
+    color: var(--accent-color);
+    z-index: -1;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.navigation-buttons button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 20%;
+}
+
+.navigation-buttons button:hover {
+    background-color: var(--hover-accent-color);
+}
+
+
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+}
+
 
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
@@ -177,11 +285,11 @@ nav {
     }
 
     .banner-text h1 {
-        font-size: 3em;
+        font-size: var(--large-font-size);
     }
 
     .navbar-left h1 {
-        font-size: 20px;
+        font-size: var(--medium-font-size);
     }
 
     .navbar-right .discover-button {
@@ -196,6 +304,17 @@ nav {
     .about-image {
         width: 200px;
     }
+
+    .top10-text {
+        padding-left: 20px;
+        margin-right: 20px;
+    }
+
+    .navigation-buttons .prev,
+    .navigation-buttons .next {
+        font-size: 1.5em;
+        padding: 5px 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -204,11 +323,11 @@ nav {
     }
 
     .banner-text h1 {
-        font-size: 2em;
+        font-size: var(--medium-font-size);
     }
 
     .navbar-left h1 {
-        font-size: 18px;
+        font-size: var(--small-font-size);
     }
 
     .navbar-right .discover-button {
@@ -217,5 +336,16 @@ nav {
 
     .about-image {
         width: 150px;
+    }
+
+    .top10-text {
+        padding-left: 10px;
+        margin-right: 10px;
+    }
+
+    .navigation-buttons .prev,
+    .navigation-buttons .next {
+        font-size: 1em;
+        padding: 5px 5px;
     }
 }
