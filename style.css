@@ -1,9 +1,9 @@
 /* General Styles */
 :root {
-    --primary-color: #606c38;
-    --secondary-color: #ffcdb2;
-    --accent-color: #ff0000;
-    --hover-accent-color: #15e515;
+    --primary-color: #c1121f;
+    --secondary-color: #cdcac8;
+    --accent-color: #e719193e;
+    --hover-accent-color: #e51515;
     --white: #ffffff;
     --black: #000000;
     --font-family: 'Helvetica', 'Arial', sans-serif;
@@ -68,7 +68,7 @@ nav {
 }
 
 .navbar-center ul li a:hover {
-    color: var(--primary-color);
+    color: var(--hover-accent-color);
 }
 
 .navbar-right .discover-button {
@@ -78,11 +78,15 @@ nav {
     padding: 10px 20px;
     cursor: pointer;
     font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .navbar-right .discover-button:hover {
     background-color: var(--hover-accent-color);
     color: var(--black);
+
 }
 
 /* Banner Section */
@@ -114,7 +118,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--primary-color);
+    background-color: var(--black);
 }
 
 .banner-text h1 {
@@ -169,7 +173,7 @@ nav {
     margin-top: 0;
     font-family: 'Tw Cen MT', sans-serif;
     font-size: var(--large-font-size);
-    
+
 }
 
 .about-button {
@@ -180,16 +184,17 @@ nav {
     margin-top: 20px;
     cursor: pointer;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 .about-button:hover {
-    background-color: var(--primary-color);
-    color: var(--primary-color);
+    background-color: var(--hover-accent-color);
+    color: var(--white);
 }
 
 /* TOP10 Section */
 #top10 {
-    background-color: var(--primary-color);
+    background-color: var(--black);
     padding: 50px 20px;
     display: flex;
     flex-direction: column;
@@ -200,6 +205,7 @@ nav {
 .top-10-container {
     display: flex;
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .slideshow {
@@ -241,11 +247,11 @@ nav {
     transform: translate(70%, -50%);
     font-size: var(--slide-number-size);
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--accent-color);
     z-index: -1;
 }
 
-/* Navigation Buttons */
+/* Navigation Buttons TOP 10 Slides */
 .navigation-buttons {
     display: flex;
     gap: 20px;
@@ -253,8 +259,8 @@ nav {
 }
 
 .navigation-buttons button {
-    background-color: var(--black);
-    color: var(--white);
+    background-color: var(--white);
+    color: var(--black);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -264,6 +270,7 @@ nav {
 
 .navigation-buttons button:hover {
     background-color: var(--hover-accent-color);
+    color: var(--white);
 }
 
 
@@ -282,7 +289,7 @@ nav {
     font-family: 'Tw Cen MT', sans-serif;
     font-size: var(--large-font-size);
     color: var(--black);
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .contact-container {
@@ -344,6 +351,286 @@ nav {
     background-color: var(--hover-accent-color);
 }
 
+
+
+/* Footer */
+footer {
+    background-color: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+}
+
+
+/* Wines Section */
+.our-wines {
+    background-color: var(--white);
+}
+
+header.our-wines {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+main.our-wines {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.wine-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    margin: 40px;
+}
+
+.wine-entry {
+    width: calc(25% - 20px);
+    margin: 10px;
+    background-color: var(--white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.wine-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.wine-info {
+    padding: 15px;
+    background-color: var(--black);
+    color: var(--white);
+    text-align: center;
+}
+
+.wine-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.wine-image {
+    width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.wine-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.wine-entry:hover .wine-image img {
+    transform: scale(1.1);
+}
+
+.wine-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-size: var(--small-font-size);
+}
+
+.wine-details .rating,
+.wine-details .price {
+    color: var(--black);
+}
+
+.wine-not-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    font-size: 4em;
+    color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.wine-not-container h1 {
+    margin: 0;
+    font-size: 5em;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: bannerAnimation 15s linear infinite;
+}
+
+@keyframes bannerAnimation {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .wine-entry {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .wine-entry {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+.filter-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter {
+
+    margin-bottom: 10px;
+}
+
+.filter h3 {
+    margin-bottom: 10px;
+    font-size: var(--medium-font-size);
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 10px 15px;
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-btn.active {
+    background-color: var(--secondary-color);
+}
+
+.filter-btn:hover {
+    background-color: var(--hover-accent-color);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px; /* Adjust width as needed */
+    display: flex;
+    flex-direction: row; /* Ensure horizontal layout */
+    align-items: center; /* Center align items vertically */
+    border-radius: 10px;
+    position: relative; /* Relative positioning for close button */
+}
+
+.modal-content img {
+    max-width: 50%; /* Limit image width */
+    height: auto;
+    object-fit: contain; /* Ensure image fits within container */
+    border-radius: 10px; /* Ensure image is outlined within its box */
+    margin-right: 20px; /* Optional: Add space between image and text */
+}
+
+.close-button {
+    color: var(--black);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px; /* Adjust top position */
+    right: 10px; /* Adjust right position */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--hover-accent-color);
+    text-decoration: none;
+}
+
+.modal-text {
+    flex: 1; /* Allow text to expand and fill remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-text h2 {
+    margin-top: 0; /* Adjust spacing for consistency */
+    font-size: var(--large-font-size);
+    font-family: 'Tw Cen MT', sans-serif;
+}
+
+.modal-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center align items horizontally */
+    margin-top: 10px; /* Adjust top margin for spacing */
+}
+
+#modalWineType,
+#modalWineRegion,
+#modalWineDescription {
+    font-size: var(--small-font-size);
+    color: var(--black);
+    margin-top: 5px; /* Adjust top margin as needed */
+}
+
+#modalWineRating,
+#modalWinePrice {
+    font-size: var(--small-font-size);
+    color: var(--black);
+    margin-top: 5px; /* Adjust top margin as needed */
+}
+
+#modalWineRating {
+    font-weight: bold;
+}
+
+#modalWinePrice {
+    margin-left: auto; /* Push to the right side */
+}
+
+
+
+
+
+
 /* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .contact-section {
@@ -379,19 +666,6 @@ nav {
     }
 }
 
-
-/* Footer */
-footer {
-    background-color: var(--primary-color);
-    color: var(--black);
-    text-align: center;
-    padding: 10px 0;
-    width: 100%;
-    bottom: 0;
-}
-
-
-/* Media Queries for Responsive Design */
 @media (max-width: 768px) {
     .banner-section {
         min-height: 400px;
