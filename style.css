@@ -12,6 +12,11 @@
     --small-font-size: 1em;
     --banner-font-size: 40em;
     --slide-number-size: 40em;
+    --red-color: #FF6347;
+    --white-color: #F0F0F0;
+    --rose-color: #FFC0CB;
+    --bubbles-color: #eaf4bd;
+    --dessert-color: #94741a;
 }
 
 *,
@@ -37,6 +42,9 @@ a {
 h1 {
     font-size: var(--large-font-size);
 }
+html {
+    scroll-behavior: smooth;
+}
 
 nav {
     display: flex;
@@ -44,6 +52,7 @@ nav {
     align-items: center;
     padding: 10px;
     background-color: var(--white);
+    
 }
 
 .navbar-left h1 {
@@ -185,6 +194,8 @@ nav {
     cursor: pointer;
     font-weight: bold;
     border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .about-button:hover {
@@ -365,9 +376,6 @@ footer {
 
 
 /* Wines Section */
-.our-wines {
-    background-color: var(--white);
-}
 
 header.our-wines {
     background-color: var(--white);
@@ -453,7 +461,7 @@ main.our-wines {
     transform: translate(-50%, -50%);
     z-index: -1;
     font-size: 4em;
-    color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
     pointer-events: none;
 }
 
@@ -532,6 +540,8 @@ main.our-wines {
 .filter-btn:hover {
     background-color: var(--hover-accent-color);
 }
+
+
 
 /* Modal Styles */
 .modal {
