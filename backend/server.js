@@ -1,25 +1,28 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const wineRoutes = require('./routes/wineRoutes');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON
-app.use(express.json());
+const mongoURI = 'mongodb+srv://busceminicolassa:in78W2Mn0otRFWda@cluster0.zhnqvsy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
-// Connect to MongoDB (replace 'your_mongodb_connection_string' with your actual connection string)
-mongoose.connect('mongodb+srv://busceminicolassa:in78W2Mn0otRFWda@cluster0.zhnqvsy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log('MongoDB connected...'))
-    .catch(err => console.log(err));
-
-// Basic route for testing
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('MongoDB connected');
+}).catch(err => {
+  console.error('Error connecting to MongoDB', err);
 });
 
-// Start the server
+app.use(express.json());
+app.use('/api', wineRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
