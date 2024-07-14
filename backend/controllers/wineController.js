@@ -1,4 +1,4 @@
-const Wine = require('../models/Wine');
+const Wine = require('../models/wineModel');
 
 // Create a new Wine
 exports.createWine = async (req, res) => {

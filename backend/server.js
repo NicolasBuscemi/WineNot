@@ -1,29 +1,46 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const wineRoutes = require('./routes/wineRoutes');
+const bodyParser = require('body-parser');
+require('dotenv').config();  // Load environment variables
 
 const app = express();
+const PORT = 3001;
 
-const PORT = process.env.PORT || 3001;
-const mongoURI = process.env.MONGO_URI;
+// Middleware
+app.use(bodyParser.json());
 
-mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => {
-    console.log('MongoDB connected to db');
-}).catch(err => {
-    console.error('Error connecting to MongoDB', err);
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log('MongoDB connected to db'))
+  .catch(err => console.log('Error connecting to MongoDB', err));
+
+// Wine Schema
+const wineSchema = new mongoose.Schema({
+  name: String,
+  year: Number,
+  grapes: String,
+  country: String,
+  description: String
 });
 
-app.use(express.json());
-app.use('/api', wineRoutes);
+const Wine = mongoose.model('Wine', wineSchema);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+// POST route to create a new wine
+app.post('/wines', async (req, res) => {
+  console.log('POST /wines', req.body);  // Debugging log
+  try {
+    const wine = new Wine(req.body);
+    await wine.save();
+    res.status(201).send(wine);
+  } catch (error) {
+    console.error('Error creating wine:', error);
+    res.status(400).send(error);
+  }
 });
 
+// Start server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
