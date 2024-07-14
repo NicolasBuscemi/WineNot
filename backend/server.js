@@ -39,7 +39,45 @@ app.post('/wines', async (req, res) => {
     res.status(400).send(error);
   }
 });
+// GET route to read a single wine by ID
+app.get('/wines/:id', async (req, res) => {
+    try {
+        const wine = await Wine.findById(req.params.id); // Find wine by ID
+        if (!wine) {
+            return res.status(404).send({ message: 'Wine not found' }); // Handle not found
+        }
+        res.status(200).send(wine); // Send the wine data
+    } catch (error) {
+        res.status(500).send(error); // Handle any errors
+    }
+});
+// PATCH route to update a wine by ID
+app.patch('/wines/:id', async (req, res) => {
+    try {
+        const wine = await Wine.findByIdAndUpdate(req.params.id, req.body, { new: true }); // Update and return new wine
+        if (!wine) {
+            return res.status(404).send({ message: 'Wine not found' }); // Handle not found
+        }
+        res.status(200).send(wine); // Send the updated wine data
+    } catch (error) {
+        res.status(400).send(error); // Handle bad request errors
+    }
+});
+// DELETE route to remove a wine by ID
+app.delete('/wines/:id', async (req, res) => {
+    try {
+        const wine = await Wine.findByIdAndDelete(req.params.id); // Delete wine by ID
+        if (!wine) {
+            return res.status(404).send({ message: 'Wine not found' }); // Handle not found
+        }
+        res.status(200).send({ message: 'Wine deleted successfully' }); // Confirm deletion
+    } catch (error) {
+        res.status(500).send(error); // Handle any errors
+    }
+});
 
+  
+  
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
