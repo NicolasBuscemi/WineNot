@@ -10,7 +10,7 @@ const PORT = 3001;
 // Middleware
 const corsOptions = {
     origin: 'http://127.0.0.1:5500', 
-    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'], // Allow required methods
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'], 
 };
 
 app.use(cors(corsOptions));
