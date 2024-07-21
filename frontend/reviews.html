@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Discover expert reviews and recommendations for wines at Wine Not. Explore our top 10 wines and more.">
+    <meta name="keywords" content="Wine, Wine Reviews, Wine Recommendations, Top 10 Wines">
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/reviews.js" defer></script>
+    <title>Reviews</title>
+</head>
+
+<body>
+    <header>
+        <nav aria-label="Main Navigation">
+            <div class="navbar-left">
+                <h1>WINE NOT</h1>
+            </div>
+            <div class="navbar-center">
+                <ul>
+                    <li><a href="index.html#about">ABOUT</a></li>
+                    <li><a href="wines.html">WINES</a></li>
+                    <li><a href="index.html#top10">TOP10</a></li>
+                    <li><a href="reviews.html">REVIEWS</a></li>
+                    <li><a href="index.html#contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <div class="navbar-right">
+                <a href="index.html#contact" class="discover-button" aria-label="Discover">CONTACT</a>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <main>
+        <div class="reviews-main">
+            <form id="review-form">
+                <input type="text" id="wine-name" placeholder="Wine Name" required>
+                <input type="number" id="year" placeholder="Year (up to 2024)" min="1900" max="2024" required>
+
+                <select id="type" required>
+                    <option value="" disabled selected>Select Wine Type</option>
+                    <option value="red">Red</option>
+                    <option value="white">White</option>
+                    <option value="rose">Rose</option>
+                    <option value="bubbles">Bubbles</option>
+                    <option value="dessert">Dessert</option>
+                </select>
+
+                <select id="region" required>
+                    <option value="" disabled selected>Select Region</option>
+                    <option value="Piemont">Piemont</option>
+                    <option value="South Italy">South Italy</option>
+                    <option value="Toscany">Toscany</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Bordeaux">Bordeaux</option>
+                </select>
+
+                <div>
+                    <label for="rating">Rating:</label>
+                    <span id="star-rating">
+                        <input type="radio" name="rating" value="1" required> ★
+                        <input type="radio" name="rating" value="2"> ★★
+                        <input type="radio" name="rating" value="3"> ★★★
+                        <input type="radio" name="rating" value="4"> ★★★★
+                        <input type="radio" name="rating" value="5"> ★★★★★
+                    </span>
+                </div>
+
+                <textarea id="review" placeholder="Your Review" required></textarea>
+                <button type="submit">Add Review</button>
+            </form>
+            <form id="update-review-form" style="display: none;">
+                <input type="text" id="update-wine-name" placeholder="Wine Name" required>
+                <input type="number" id="update-year" placeholder="Year (up to 2024)" min="1900" max="2024" required>
+
+                <select id="update-type" required>
+                    <option value="" disabled selected>Select Wine Type</option>
+                    <option value="red">Red</option>
+                    <option value="white">White</option>
+                    <option value="rose">Rose</option>
+                    <option value="bubbles">Bubbles</option>
+                    <option value="dessert">Dessert</option>
+                </select>
+
+                <select id="update-region" required>
+                    <option value="" disabled selected>Select Region</option>
+                    <option value="Piemont">Piemont</option>
+                    <option value="South Italy">South Italy</option>
+                    <option value="Toscany">Toscany</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Bordeaux">Bordeaux</option>
+                </select>
+
+                <div>
+                    <label for="update-rating">Rating:</label>
+                    <span id="update-star-rating">
+                        <input type="radio" name="update-rating" value="1" required> ★
+                        <input type="radio" name="update-rating" value="2"> ★★
+                        <input type="radio" name="update-rating" value="3"> ★★★
+                        <input type="radio" name="update-rating" value="4"> ★★★★
+                        <input type="radio" name="update-rating" value="5"> ★★★★★
+                    </span>
+                </div>
+
+                <textarea id="update-review" placeholder="Your Review" required></textarea>
+                <button type="submit">Update Review</button>
+            </form>
+
+
+        </div>
+
+        <ul id="review-list"></ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Winery. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

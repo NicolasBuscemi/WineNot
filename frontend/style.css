@@ -42,6 +42,7 @@ a {
 h1 {
     font-size: var(--large-font-size);
 }
+
 html {
     scroll-behavior: smooth;
 }
@@ -52,7 +53,7 @@ nav {
     align-items: center;
     padding: 10px;
     background-color: var(--white);
-    
+
 }
 
 .navbar-left h1 {
@@ -562,20 +563,28 @@ main.our-wines {
     margin: 5% auto;
     padding: 20px;
     width: 80%;
-    max-width: 800px; /* Adjust width as needed */
+    max-width: 800px;
+    /* Adjust width as needed */
     display: flex;
-    flex-direction: row; /* Ensure horizontal layout */
-    align-items: center; /* Center align items vertically */
+    flex-direction: row;
+    /* Ensure horizontal layout */
+    align-items: center;
+    /* Center align items vertically */
     border-radius: 10px;
-    position: relative; /* Relative positioning for close button */
+    position: relative;
+    /* Relative positioning for close button */
 }
 
 .modal-content img {
-    max-width: 50%; /* Limit image width */
+    max-width: 50%;
+    /* Limit image width */
     height: auto;
-    object-fit: contain; /* Ensure image fits within container */
-    border-radius: 10px; /* Ensure image is outlined within its box */
-    margin-right: 20px; /* Optional: Add space between image and text */
+    object-fit: contain;
+    /* Ensure image fits within container */
+    border-radius: 10px;
+    /* Ensure image is outlined within its box */
+    margin-right: 20px;
+    /* Optional: Add space between image and text */
 }
 
 .close-button {
@@ -584,8 +593,10 @@ main.our-wines {
     font-weight: bold;
     cursor: pointer;
     position: absolute;
-    top: 10px; /* Adjust top position */
-    right: 10px; /* Adjust right position */
+    top: 10px;
+    /* Adjust top position */
+    right: 10px;
+    /* Adjust right position */
 }
 
 .close-button:hover,
@@ -595,13 +606,15 @@ main.our-wines {
 }
 
 .modal-text {
-    flex: 1; /* Allow text to expand and fill remaining space */
+    flex: 1;
+    /* Allow text to expand and fill remaining space */
     display: flex;
     flex-direction: column;
 }
 
 .modal-text h2 {
-    margin-top: 0; /* Adjust spacing for consistency */
+    margin-top: 0;
+    /* Adjust spacing for consistency */
     font-size: var(--large-font-size);
     font-family: 'Tw Cen MT', sans-serif;
 }
@@ -609,8 +622,10 @@ main.our-wines {
 .modal-details {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Center align items horizontally */
-    margin-top: 10px; /* Adjust top margin for spacing */
+    align-items: center;
+    /* Center align items horizontally */
+    margin-top: 10px;
+    /* Adjust top margin for spacing */
 }
 
 #modalWineType,
@@ -618,14 +633,16 @@ main.our-wines {
 #modalWineDescription {
     font-size: var(--small-font-size);
     color: var(--black);
-    margin-top: 5px; /* Adjust top margin as needed */
+    margin-top: 5px;
+    /* Adjust top margin as needed */
 }
 
 #modalWineRating,
 #modalWinePrice {
     font-size: var(--small-font-size);
     color: var(--black);
-    margin-top: 5px; /* Adjust top margin as needed */
+    margin-top: 5px;
+    /* Adjust top margin as needed */
 }
 
 #modalWineRating {
@@ -633,7 +650,8 @@ main.our-wines {
 }
 
 #modalWinePrice {
-    margin-left: auto; /* Push to the right side */
+    margin-left: auto;
+    /* Push to the right side */
 }
 
 
@@ -745,4 +763,169 @@ main.our-wines {
         font-size: 1em;
         padding: 5px 5px;
     }
+}
+/* Reviews page */
+.reviews-main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-main form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+/* Form styles */
+.reviews-main form input,
+.reviews-main form select,
+.reviews-main form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    font-size: var(--small-font-size);
+    transition: border-color 0.3s;
+}
+
+.reviews-main form input:focus,
+.reviews-main form select:focus,
+.reviews-main form textarea:focus {
+    border-color: var(--primary-color);
+}
+
+.reviews-main button[type="submit"] {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: var(--medium-font-size);
+    transition: background-color 0.3s;
+}
+
+.reviews-main button[type="submit"]:hover {
+    background-color: var(--hover-accent-color);
+}
+
+/* Review List */
+/* Review List */
+ul#review-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+ul#review-list .review-item {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+ul#review-list .review-item .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+ul#review-list .review-item .top-left {
+    width: 50%;
+}
+
+ul#review-list .review-item .top-right {
+    width: 50%;
+    text-align: right;
+}
+
+ul#review-list .review-item .wine-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+ul#review-list .review-item .star-rating {
+    color: gold;
+    font-size: 1.2em;
+}
+
+ul#review-list .review-item .review-text {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+ul#review-list .review-item .wine-info {
+    font-style: italic;
+    color: var(--white);
+}
+
+ul#review-list .review-item .review-actions {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+ul#review-list .review-item .review-actions button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+ul#review-list .review-item .review-actions button:hover {
+    background-color: var(--hover-accent-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    ul#review-list .review-item .review-actions {
+        position: static;
+        margin-top: 10px;
+    }
+}
+
+
+
+/* Update Form Specific Styles */
+#update-review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Ensure spacing between form elements */
+    margin-bottom: 30px;
+}
+
+/* Additional margin as fallback if gap doesn't work */
+#update-review-form input,
+#update-review-form select,
+#update-review-form textarea,
+#update-review-form .star-rating {
+    margin-bottom: 15px;
+}
+
+/* Star Ratings */
+#star-rating,
+#update-star-rating {
+    display: flex;
+    gap: 10px;
+}
+
+#star-rating input,
+#update-star-rating input {
+    width: auto; /* Ensure star rating inputs do not take full width */
 }
