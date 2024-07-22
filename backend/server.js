@@ -1,20 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
+require('dotenv').config({ path: './backend/.env' });
+
 const wineRoutes = require('./routes/wineRoutes');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500', 
-    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'], 
+    origin: 'http://127.0.0.1:5500',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 };
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
 
 // Routes
@@ -26,13 +26,13 @@ app.use((req, res, next) => {
 });
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  
-}).then(() => {
-  console.log('MongoDB connected to db');
-}).catch((error) => {
-  console.error('Error connecting to MongoDB:', error);
-});
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('MongoDB connected to db');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+  });
 
 // Start server
 app.listen(PORT, () => {
