@@ -7,9 +7,10 @@
     <meta name="description"
         content="Discover expert reviews and recommendations for wines at Wine Not. Explore our top 10 wines and more.">
     <meta name="keywords" content="Wine, Wine Reviews, Wine Recommendations, Top 10 Wines">
+    <script src="scripts/api.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <script src="scripts/wines.js" defer></script> 
-    
+    <script src="scripts/wines.js" defer></script>
+
     <title>Wines</title>
 </head>
 
@@ -34,162 +35,49 @@
         </nav>
     </header>
 
-   
-    <main>
-        <div class="filter-section">
+
+    <main class="our-wines">
+        <section class="filter-section">
             <div class="filter-container">
                 <div class="filter">
+
                     <div class="filter-buttons">
-                        <button class="filter-btn wine-filter" data-value="red">RED</button>
-                        <button class="filter-btn wine-filter" data-value="white">WHITE</button>
-                        <button class="filter-btn wine-filter" data-value="rose">ROSE</button>
-                        <button class="filter-btn wine-filter" data-value="bubbles">BUBBLES</button>
-                        <button class="filter-btn wine-filter" data-value="dessert">DESSERT</button>
-                    </div>
-                </div>
-                <div class="filter">
-                    <div class="filter-buttons">
-                        <button class="filter-btn region-filter" data-value="piemont">Piemont</button>
-                        <button class="filter-btn region-filter" data-value="south-italy">South Italy</button>
-                        <button class="filter-btn region-filter" data-value="toscany">Toscany</button>
-                        <button class="filter-btn region-filter" data-value="spain">Spain</button>
-                        <button class="filter-btn region-filter" data-value="bordeaux">Bordeaux</button>
+                        <button class="filter-btn active" data-value="red">Red</button>
+                        <button class="filter-btn" data-value="white">White</button>
+                        <button class="filter-btn" data-value="rose">Rose</button>
+                        <button class="filter-btn" data-value="bubbles">Bubbles</button>
+                        <button class="filter-btn" data-value="dessert">Dessert</button>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <div class="wine-container">
+            <!-- Wine entries will be appended here -->
         </div>
-        <div class="our-wines">
-            <div class="wine-not-container">
-                <h1>WINE NOT</h1>
-            </div>
-            <div class="wine-container">
-                <div class="wine-entry" data-type="red" data-region="bordeaux"
-                    data-description="A full-bodied red wine with hints of cherry and oak.">
-                    <div class="wine-info">
-                        <h3>Wine Name</h3>
-                    </div>
-                    <div class="wine-image">
-                        <img src="img/Top1.jpg" alt="Wine Image">
-                    </div>
-                    <div class="wine-details">
-                        <div class="rating">Rating: 4.5/5</div>
-                        <div class="price">$29.99</div>
-                    </div>
-                </div>
 
-                <div class="wine-entry" data-type="white" data-region="toscany">
-                    <div class="wine-info">
-                        <h3>Wine Name</h3>
-                    </div>
-                    <div class="wine-image">
-                        <img src="img/Top1.jpg" alt="Wine Image">
-                    </div>
-                    <div class="wine-details">
-                        <div class="rating">Rating: 4.5/5</div>
-                        <div class="price">$29.99</div>
-                    </div>
-                </div>
-
-                <div class="wine-entry" data-type="rose" data-region="spain">
-                    <div class="wine-info">
-                        <h3>Wine Name</h3>
-                    </div>
-                    <div class="wine-image">
-                        <img src="img/Top1.jpg" alt="Wine Image">
-                    </div>
-                    <div class="wine-details">
-                        <div class="rating">Rating: 4.5/5</div>
-                        <div class="price">$29.99</div>
-                    </div>
-                </div>
-
-                <div class="wine-entry" data-type="red" data-region="bordeaux">
-                    <div class="wine-info">
-                        <h3>Wine Name</h3>
-                    </div>
-                    <div class="wine-image">
-                        <img src="img/Top1.jpg" alt="Wine Image">
-                    </div>
-                    <div class="wine-details">
-                        <div class="rating">Rating: 4.5/5</div>
-                        <div class="price">$29.99</div>
-                    </div>
-                </div>
-                <div class="wine-entry" data-type="red" data-region="bordeaux">
-                    <div class="wine-info">
-                        <h3>Wine Name</h3>
-                    </div>
-                    <div class="wine-image">
-                        <img src="img/Top1.jpg" alt="Wine Image">
-                    </div>
-                    <div class="wine-details">
-                        <div class="rating">Rating: 4.5/5</div>
-                        <div class="price">$29.99</div>
-                    </div>
-                </div>
-                <div class="wine-entry" data-type="rose" data-region="bordeaux">
-                    <div class="wine-info">
-                        <h3>Wine Name</h3>
-                    </div>
-                    <div class="wine-image">
-                        <img src="img/Top1.jpg" alt="Wine Image">
-                    </div>
-                    <div class="wine-details">
-                        <div class="rating">Rating: 4.5/5</div>
-                        <div class="price">$29.99</div>
-                    </div>
-                </div>
-                <div class="wine-entry" data-type="dessert" data-region="bordeaux">
-                    <div class="wine-info">
-                        <h3>Wine Name</h3>
-                    </div>
-                    <div class="wine-image">
-                        <img src="img/Top1.jpg" alt="Wine Image">
-                    </div>
-                    <div class="wine-details">
-                        <div class="rating">Rating: 4.5/5</div>
-                        <div class="price">$29.99</div>
-                    </div>
-                </div>
-                <div class="wine-entry" data-type="bubbles" data-region="toscany">
-                    <div class="wine-info">
-                        <h3>Wine Name</h3>
-                    </div>
-                    <div class="wine-image">
-                        <img src="img/Top1.jpg" alt="Wine Image">
-                    </div>
-                    <div class="wine-details">
-                        <div class="rating">Rating: 4.5/5</div>
-                        <div class="price">$29.99</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Structure -->
+        <!-- Modal HTML -->
         <div id="wineModal" class="modal">
             <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <img id="modalWineImage" src="img/Top1.jpg" alt="Wine Image" />
                 <div class="modal-text">
                     <h2 id="modalWineName">Wine Name</h2>
-                    <p id="modalWineDescription">Description: Lorem ipsum dolor sit amet...</p>
-                    <div class="modal-details">
-                        <p id="modalWineType">Red</p>
-                        <p id="modalWineRegion">Piemont</p>
-                    </div>
-                    <div class="modal-details">
-                        <p id="modalWineRating">4.5/5</p>
-                        <p id="modalWinePrice">$29.99</p>
-                    </div>
+                    <div id="modalWineType">Type: Red</div>
+                    <div id="modalWineRegion">Region: Region</div>
+                    <div id="modalWineRating">Rating: 4/5</div>
+                    <div id="modalWineWinery">Winery: Winery</div>
                 </div>
+                <div class="modal-image">
+                    <img id="modalWineImage" src="path/to/image.jpg" alt="Wine Image">
+                </div>
+                <span class="close-button">&times;</span>
             </div>
         </div>
-    </main>
 
+    </main>
     <footer>
         <p>&copy; 2024 Winery. All rights reserved.</p>
     </footer>
-    
+
 </body>
 
 </html>
