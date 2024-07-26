@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="scripts/api.js" defer></script>
     <script src="scripts/index.js" defer></script>
+    <script src="scripts/auth.js" defer></script>
+
     <title>Wine Not</title>
 </head>
 
@@ -30,7 +32,7 @@
                 </ul>
             </div>
             <div class="navbar-right">
-                <a href="wines.html" class="discover-button" aria-label="Discover">DISCOVER</a>
+                <a href="#" id="profile-button" aria-label="Profile">LOG IN</a>
             </div>
         </nav>
     </header>
@@ -48,19 +50,14 @@
                 <div class="about-text">
                     <h1>ABOUT US</h1>
                     <p>Welcome to Wine Not, your ultimate wine guide. Discover expert reviews and recommendations for
-                        all
-                        types of wines, including rosé, white, red, bubbles, and dessert wines. Our mission is to
-                        simplify
-                        your wine selection with detailed reviews and top picks, ensuring every bottle brings joy and
-                        sophistication. Check out our Top 10 wines, each rated out of 5 for quick insight into quality
-                        and
-                        popularity. Join the Wine Not community to explore and enjoy the world of wines. Cheers to every
-                        sip
-                        telling a story!</p>
+                        all types of wines, including rosé, white, red, bubbles, and dessert wines. Our mission is to
+                        simplify your wine selection with detailed reviews and top picks, ensuring every bottle brings
+                        joy and sophistication. Check out our Top 10 wines, each rated out of 5 for quick insight into
+                        quality and popularity. Join the Wine Not community to explore and enjoy the world of wines.
+                        Cheers to every sip telling a story!</p>
 
                     <a href="wines.html" class="button about-button" aria-label="Explore Our Wines">EXPLORE OUR
                         WINES</a>
-
                 </div>
             </div>
         </section>
@@ -73,11 +70,10 @@
                 <button class="next" aria-label="Next Slide">&#10095;</button>
             </div>
         </section>
-        
+
         <section id="contact" class="contact-section">
             <h1>REACH OUT</h1>
             <div class="contact-container">
-
                 <form class="contact-form">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -96,12 +92,65 @@
             </div>
         </section>
 
+
+        <section id="profile-section" class="login-modal" style="display: none;">
+            <div class="login-modal-content">
+                <span class="login-close-button">&times;</span>
+                <div id="login-signup-forms">
+                    <form id="login-form">
+                        <h2>Login</h2>
+                        <input type="text" id="login-username" name="username" placeholder="Username" required>
+                        <input type="password" id="login-password" name="password" placeholder="Password" required>
+                        <p id="login-error" class="error-message"></p>
+                        <button type="submit">Login</button>
+                        <p>Don't have an account? <a href="#" id="show-signup">Sign up here</a></p>
+                    </form>
+                    <form id="signup-form" style="display: none;">
+                        <h2>Sign Up</h2>
+                        <input type="text" id="signup-name" name="name" placeholder="Name" required>
+                        <input type="email" id="signup-email" name="email" placeholder="Email" required>
+                        <input type="text" id="signup-username" name="username" placeholder="Username" required>
+                        <input type="password" id="signup-password" name="password" placeholder="Password" required>
+                        <p id="signup-error" class="error-message"></p>
+                        <button type="submit">Sign Up</button>
+                        <p>Already have an account? <a href="#" id="show-login">Login here</a></p>
+                    </form>
+                </div>
+                <div id="profile-info" style="display: none;">
+                    <h2>Hi, <span id="user-name"></span></h2>
+                    <p>Email: <span id="user-email"></span></p>
+                    <p>Username: <span id="user-username"></span></p>
+                    <p>You want to delete your account? <a href="#" id="show-delete-confirm">Click here</a></p>
+                    <div id="delete-confirm" style="display: none;">
+                        <p>Are you sure you want to delete your account?</p>
+                        <button id="confirm-delete-button">Confirm</button>
+                        <button id="cancel-delete-button">Cancel</button>
+                    </div>
+                    <div class="profile-buttons">
+                        <button id="show-update-form">Update</button>
+                        <button id="logout-button">Logout</button>
+                    </div>
+                </div>
+                <form id="update-form" style="display: none;">
+                    <h2>Update Profile</h2>
+                    <input type="text" id="update-username" name="username" placeholder="New Username">
+                    <input type="password" id="update-password" name="password" placeholder="New Password">
+                    <p id="update-error" class="error-message"></p>
+                    <button type="submit">Confirm</button>
+                </form>
+            </div>
+        </section>
+
+
+
+
+
+
     </main>
 
     <footer>
         <p>&copy; 2024 Winery. All rights reserved.</p>
     </footer>
-
 </body>
 
 </html>

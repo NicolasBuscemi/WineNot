@@ -2,45 +2,27 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Fetch wines from multiple APIs
     async function fetchWines() {
         try {
-            const endpoints = [{
-                    url: 'https://api.sampleapis.com/wines/reds',
-                    color: '#FF6347'
-                },
-                {
-                    url: 'https://api.sampleapis.com/wines/whites',
-                    color: '#F0F0F0'
-                },
-                {
-                    url: 'https://api.sampleapis.com/wines/rose',
-                    color: '#FFC0CB'
-                },
-                {
-                    url: 'https://api.sampleapis.com/wines/sparkling',
-                    color: '#eaf4bd'
-                },
-                {
-                    url: 'https://api.sampleapis.com/wines/dessert',
-                    color: '#94741a'
-                }
+            const endpoints = [
+                { url: 'https://api.sampleapis.com/wines/reds', color: '#FF6347' },
+                { url: 'https://api.sampleapis.com/wines/whites', color: '#F0F0F0' },
+                { url: 'https://api.sampleapis.com/wines/rose', color: '#FFC0CB' },
+                { url: 'https://api.sampleapis.com/wines/sparkling', color: '#eaf4bd' },
+                { url: 'https://api.sampleapis.com/wines/dessert', color: '#94741a' }
             ];
 
-
-            const fetchPromises = endpoints.map(endpoint => fetch(endpoint.url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Failed to fetch wines from ${endpoint.url}`);
-                    }
-                    return response.json().then(data => {
-                        console.log(`Data from ${endpoint.url}:`, data);
-                        if (!Array.isArray(data)) {
-                            throw new Error(`Invalid data format from ${endpoint.url}`);
+            const fetchPromises = endpoints.map(endpoint =>
+                fetch(endpoint.url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Failed to fetch wines from ${endpoint.url}`);
                         }
-                        return {
-                            data,
-                            color: endpoint.color
-                        };
-                    });
-                })
+                        return response.json().then(data => {
+                            if (!Array.isArray(data)) {
+                                throw new Error(`Invalid data format from ${endpoint.url}`);
+                            }
+                            return { data, color: endpoint.color };
+                        });
+                    })
             );
 
             const results = await Promise.all(fetchPromises);
@@ -145,10 +127,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
+            const href = this.getAttribute('href');
+            if (href && href !== "#") {
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                } else {
+                    console.error(`Element with ID '${href}' not found`);
+                }
+            }
         });
     });
 });

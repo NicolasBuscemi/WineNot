@@ -5,6 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const API_URL = 'http://localhost:3001/api/reviews';
     let currentReviewId = null;
 
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        reviewForm.style.display = 'none';
+        updateReviewForm.style.display = 'none';
+        document.getElementById('login-prompt').style.display = 'block';
+        return;
+    }
+
     reviewForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -20,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     name: wineName,
@@ -106,6 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     name,
@@ -134,6 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(`${API_URL}/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
 
             if (response.ok) {

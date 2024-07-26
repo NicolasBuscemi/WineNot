@@ -580,6 +580,7 @@ footer {
 .modal-text {
     flex: 1;
     padding: 40px;
+    gap: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -912,5 +913,159 @@ ul#review-list .review-item .review-actions button:hover {
 #star-rating input,
 #update-star-rating input {
     width: auto;
-    /* Ensure star rating inputs do not take full width */
+
+}
+
+/* Profile Button */
+#profile-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+#profile-button:hover {
+    background-color: var(--hover-accent-color);
+}
+
+/* Login Modal Styles */
+.login-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.login-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.login-close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.login-close-button:hover,
+.login-close-button:focus {
+    color: black;
+}
+
+/* Form Styles */
+#login-form,
+#signup-form,
+#profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-form input,
+#signup-form input,
+#update-form input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#login-form button,
+#signup-form button,
+#update-form button,
+#logout-button,
+#confirm-delete-button,
+#cancel-delete-button,
+#show-update-form {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+#login-form button:hover,
+#signup-form button:hover,
+#update-form button:hover,
+#logout-button:hover,
+#confirm-delete-button:hover,
+#cancel-delete-button:hover,
+#show-update-form:hover {
+    background-color: var(--hover-accent-color);
+}
+/* Style for the links in the login and signup forms */
+#login-form a,
+#signup-form a {
+    color: black;
+    text-decoration: underline; 
+    cursor: pointer; 
+}
+
+#login-form a:hover,
+#signup-form a:hover {
+    color: var(--hover-accent-color); 
+}
+
+#profile-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    display: none;
+}
+
+
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none; /* Hidden by default */
+}
+
+/* Centering the buttons */
+.profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 200px;
+    margin:  auto;
+}
+
+/* Link styles */
+#show-delete-confirm {
+    color: black;
+    text-decoration: none;
+}
+
+#show-delete-confirm:hover {
+    text-decoration: underline;
 }

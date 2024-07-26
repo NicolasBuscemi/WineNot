@@ -1,16 +1,18 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config({ path: './backend/.env' });
-
 const wineRoutes = require('./routes/wineRoutes');
+const userRoutes = require('./routes/userRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500',
+    origin: 'http://127.0.0.1:5500', 
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 };
 
@@ -19,6 +21,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api', wineRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // Catch-all route for undefined endpoints
 app.use((req, res, next) => {
@@ -26,13 +30,16 @@ app.use((req, res, next) => {
 });
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log('MongoDB connected to db');
-  })
-  .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
-  });
+console.log('MONGO_URI:', process.env.MONGO_URI);
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('MongoDB connected to db');
+}).catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
+});
 
 // Start server
 app.listen(PORT, () => {
