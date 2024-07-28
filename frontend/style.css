@@ -153,7 +153,7 @@ nav {
 /* About Section */
 #about {
     background-color: var(--white);
-    padding: 50px 20px;
+    padding: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -308,12 +308,15 @@ nav {
 
 /* Contact Section */
 .contact-section {
+    position: relative;
     background-color: var(--white);
-    padding: 50px 20px;
+    padding: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    /* Ensure content stays within the section */
 }
 
 .contact-section h1 {
@@ -321,6 +324,8 @@ nav {
     font-size: var(--large-font-size);
     color: var(--black);
     margin-bottom: 10px;
+    z-index: 2;
+    /* Ensure the heading stays above the background text */
 }
 
 .contact-container {
@@ -329,6 +334,9 @@ nav {
     align-items: center;
     max-width: 600px;
     width: 100%;
+    position: relative;
+    z-index: 2;
+    /* Ensure the container content stays above the background text */
 }
 
 .contact-info {
@@ -381,6 +389,37 @@ nav {
 .contact-button:hover {
     background-color: var(--hover-accent-color);
 }
+
+/* Background Text Animation */
+.contact-text-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.contact-text-background h1 {
+    font-family: 'Tw Cen MT', sans-serif;
+    font-size: var(--banner-font-size);
+    color: var(--black);
+    margin: 0;
+    animation: bannerAnimation 15s linear infinite;
+}
+
+@keyframes bannerAnimation {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+
 
 
 
@@ -749,6 +788,43 @@ footer {
 }
 
 /* Reviews page */
+.reviews-section {
+    position: relative;
+    background-color: var(--white);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.reviews-text-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.reviews-text-background h1 {
+    font-family: 'Tw Cen MT', sans-serif;
+    font-size: var(--banner-font-size);
+    color: var(--black);
+    margin: 0;
+    animation: bannerAnimation 15s linear infinite;
+}
+
+@keyframes bannerAnimation {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 .reviews-main {
     max-width: 800px;
     margin: 20px auto;
@@ -756,16 +832,15 @@ footer {
     background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
 }
 
 .reviews-main form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 10px;
 }
 
-/* Form styles */
 .reviews-main form input,
 .reviews-main form select,
 .reviews-main form textarea {
@@ -775,6 +850,7 @@ footer {
     border-radius: 5px;
     font-size: var(--small-font-size);
     transition: border-color 0.3s;
+    margin-bottom: 10px;
 }
 
 .reviews-main form input:focus,
@@ -790,7 +866,7 @@ footer {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: var(--medium-font-size);
+    font-size: var(--small-font-size);
     transition: background-color 0.3s;
 }
 
@@ -799,12 +875,12 @@ footer {
 }
 
 /* Review List */
-/* Review List */
 ul#review-list {
     list-style-type: none;
     padding: 0;
     margin: 20px auto;
     max-width: 800px;
+    z-index: 2;
 }
 
 ul#review-list .review-item {
@@ -851,7 +927,7 @@ ul#review-list .review-item .review-text {
 
 ul#review-list .review-item .wine-info {
     font-style: italic;
-    color: var(--white);
+    color: var(--black);
 }
 
 ul#review-list .review-item .review-actions {
@@ -884,14 +960,11 @@ ul#review-list .review-item .review-actions button:hover {
     }
 }
 
-
-
 /* Update Form Specific Styles */
 #update-review-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* Ensure spacing between form elements */
     margin-bottom: 30px;
 }
 
@@ -913,8 +986,64 @@ ul#review-list .review-item .review-actions button:hover {
 #star-rating input,
 #update-star-rating input {
     width: auto;
-
 }
+
+
+
+/* Reviews Intro Section */
+#reviews-intro {
+    background-color: var(--white);
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reviews-content {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.reviews-image {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    max-height: 400px;
+}
+
+.reviews-text {
+    max-width: 500px;
+    font-size: var(--small-font-size);
+    line-height: 1.6;
+    color: var(--black);
+}
+
+.reviews-text h1 {
+    margin-top: 0;
+    font-family: 'Tw Cen MT', sans-serif;
+    font-size: var(--large-font-size);
+}
+
+.reviews-button {
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.reviews-button:hover {
+    background-color: var(--hover-accent-color);
+    color: var(--white);
+}
+
+
 
 /* Profile Button */
 #profile-button {
@@ -1020,17 +1149,18 @@ ul#review-list .review-item .review-actions button:hover {
 #show-update-form:hover {
     background-color: var(--hover-accent-color);
 }
+
 /* Style for the links in the login and signup forms */
 #login-form a,
 #signup-form a {
     color: black;
-    text-decoration: underline; 
-    cursor: pointer; 
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 #login-form a:hover,
 #signup-form a:hover {
-    color: var(--hover-accent-color); 
+    color: var(--hover-accent-color);
 }
 
 #profile-info {
@@ -1048,7 +1178,8 @@ ul#review-list .review-item .review-actions button:hover {
 .error-message {
     color: red;
     font-size: 0.9em;
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
 }
 
 /* Centering the buttons */
@@ -1057,7 +1188,7 @@ ul#review-list .review-item .review-actions button:hover {
     justify-content: space-between;
     width: 100%;
     max-width: 200px;
-    margin:  auto;
+    margin: auto;
 }
 
 /* Link styles */
@@ -1068,4 +1199,37 @@ ul#review-list .review-item .review-actions button:hover {
 
 #show-delete-confirm:hover {
     text-decoration: underline;
+}
+
+/* Scrolling text */
+.scrolling-text-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--primary-color);
+    /* Adjust background color */
+    padding: 10px 0;
+    /* Adjust padding */
+    position: relative;
+    /* For positioning the absolute element inside */
+}
+
+.scrolling-text {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 20s linear infinite;
+}
+
+.scrolling-text span {
+    display: inline-block;
+}
+
+/* Keyframes for the scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }

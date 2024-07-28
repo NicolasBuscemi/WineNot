@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const profileButton = document.getElementById('profile-button');
     const profileSection = document.getElementById('profile-section');
     const loginForm = document.getElementById('login-form');
@@ -17,15 +17,64 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteConfirm = document.getElementById('delete-confirm');
     const confirmDeleteButton = document.getElementById('confirm-delete-button');
     const cancelDeleteButton = document.getElementById('cancel-delete-button');
-
     const loginError = document.getElementById('login-error');
     const signupError = document.getElementById('signup-error');
     const updateError = document.getElementById('update-error');
 
-    let userData = JSON.parse(localStorage.getItem('userData')) || null;
+    let userData = JSON.parse(localStorage.getItem('userData')); // Store user data in localStorage
 
+    // Log all elements to check their presence
+    console.log('Elements:', {
+        profileButton,
+        profileSection,
+        loginForm,
+        signupForm,
+        showSignupLink,
+        showLoginLink,
+        logoutButton,
+        loginSignupForms,
+        profileInfo,
+        showUpdateFormButton,
+        updateForm,
+        userNameElement,
+        userEmailElement,
+        userUsernameElement,
+        showDeleteConfirmLink,
+        deleteConfirm,
+        confirmDeleteButton,
+        cancelDeleteButton,
+        loginError,
+        signupError,
+        updateError
+    });
+
+    // Check if the user is authenticated
     function checkAuthentication() {
         console.log('Checking authentication:', userData);
+
+        if (!loginSignupForms || !profileInfo || !logoutButton || !showUpdateFormButton || !updateForm || !profileButton || !userNameElement || !userEmailElement || !userUsernameElement) {
+            console.error('One or more elements are missing in the DOM', {
+                profileButton,
+                profileSection,
+                loginForm,
+                signupForm,
+                showSignupLink,
+                showLoginLink,
+                logoutButton,
+                loginSignupForms,
+                profileInfo,
+                showUpdateFormButton,
+                updateForm,
+                userNameElement,
+                userEmailElement,
+                userUsernameElement,
+                showDeleteConfirmLink,
+                deleteConfirm,
+                confirmDeleteButton,
+                cancelDeleteButton
+            });
+            return;
+        }
 
         if (userData) {
             loginSignupForms.style.display = 'none';
@@ -79,10 +128,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     logoutButton.addEventListener('click', () => {
-        userData = null;
-        localStorage.removeItem('userData');
+        localStorage.removeItem('userData'); // Clear user data from localStorage
+        userData = null; // Clear user data
         profileSection.style.display = 'none';
-        checkAuthentication();
+        window.location.reload(); // Refresh the page
     });
 
     loginForm.addEventListener('submit', async (e) => {
@@ -104,10 +153,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const data = await response.json();
             if (response.ok) {
-                userData = data;
-                localStorage.setItem('userData', JSON.stringify(userData));
+                userData = data; // Store user data
+                localStorage.setItem('userData', JSON.stringify(userData)); // Save user data to localStorage
                 profileSection.style.display = 'none';
-                checkAuthentication();
+                window.location.reload(); // Refresh the page
                 loginError.textContent = '';
                 loginError.style.display = 'none';
             } else {
@@ -145,10 +194,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const data = await response.json();
             if (response.ok) {
-                userData = data;
-                localStorage.setItem('userData', JSON.stringify(userData));
+                userData = data; // Store user data
+                localStorage.setItem('userData', JSON.stringify(userData)); // Save user data to localStorage
                 profileSection.style.display = 'none';
-                checkAuthentication();
+                window.location.reload(); // Refresh the page
                 signupError.textContent = '';
                 signupError.style.display = 'none';
             } else {
@@ -183,14 +232,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const data = await response.json();
             if (response.ok) {
-                userData = data;
-                localStorage.setItem('userData', JSON.stringify(userData));
+                userData = data; // Update user data
+                localStorage.setItem('userData', JSON.stringify(userData)); // Update user data in localStorage
                 checkAuthentication();
                 updateError.textContent = '';
                 updateError.style.display = 'none';
-                updateForm.style.display = 'none';
+                updateForm.style.display = 'none'; // Hide update form after successful update
             } else {
-                updateError.textContent = data.message || 'Failed to update profile. Please check your details.';
+                if (data.message && data.message.includes('duplicate key error')) {
+                    updateError.textContent = 'Username is already taken. Please choose a different one.';
+                } else {
+                    updateError.textContent = data.message || 'Failed to update profile. Please check your details.';
+                }
                 updateError.style.display = 'block';
                 console.error('Failed to update profile:', data);
             }
@@ -211,10 +264,10 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (response.ok) {
-                userData = null;
-                localStorage.removeItem('userData');
+                localStorage.removeItem('userData'); // Clear user data from localStorage
+                userData = null; // Clear user data
                 profileSection.style.display = 'none';
-                checkAuthentication();
+                window.location.reload(); // Refresh the page
             } else {
                 console.error('Failed to delete account');
             }
@@ -229,5 +282,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    checkAuthentication(); // Check authentication on page load
+    checkAuthentication(); // Check authentication status on page load
 });
