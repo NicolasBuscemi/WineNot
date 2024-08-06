@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     showUpdateFormButton.addEventListener('click', () => {
+        profileInfo.style.display = 'none';
         updateForm.style.display = 'block';
     });
 
@@ -222,10 +223,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 userData = data; // Update user data
                 localStorage.setItem('userData', JSON.stringify(userData)); // Update user data in localStorage
+                profileInfo.style.display = 'block';
+                updateForm.style.display = 'none'; // Hide update form after successful update
                 checkAuthentication();
                 updateError.textContent = '';
                 updateError.style.display = 'none';
-                updateForm.style.display = 'none'; // Hide update form after successful update
             } else {
                 if (data.message && data.message.includes('duplicate key error')) {
                     updateError.textContent = 'Username is already taken. Please choose a different one.';
