@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateReviewForm = document.getElementById('update-review-form');
     const reviewList = document.getElementById('review-list');
     const loginPrompt = document.getElementById('login-prompt');
+    const createReviewButton = document.getElementById('create-review-button'); // Voeg deze regel toe
     const API_URL = 'http://localhost:3001/api/reviews';
     let currentReviewId = null;
 
@@ -10,11 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const userData = JSON.parse(localStorage.getItem('userData'));
         if (userData && userData.token) {
             loginPrompt.style.display = 'none';
-            reviewForm.style.display = 'block';
+            createReviewButton.style.display = 'block'; // Verberg het formulier, toon de knop
             console.log('User logged in.');
         } else {
             reviewForm.style.display = 'none';
             updateReviewForm.style.display = 'none';
+            createReviewButton.style.display = 'none'; // Verberg de knop wanneer niet ingelogd
             loginPrompt.style.display = 'block';
             console.log('User not logged in.');
         }
@@ -25,6 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const userData = JSON.parse(localStorage.getItem('userData'));
     const token = userData ? userData.token : null;
     console.log('Token:', token);
+
+    createReviewButton.addEventListener('click', () => {
+        reviewForm.style.display = 'block';
+        createReviewButton.style.display = 'none'; // Verberg de knop wanneer het formulier wordt weergegeven
+    });
 
     reviewForm.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -56,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 fetchReviews();
                 reviewForm.reset();
+                reviewForm.style.display = 'none';
+                createReviewButton.style.display = 'block'; // Toon de knop weer na het indienen van het formulier
             } else {
                 console.error('Failed to add review:', await response.json());
             }
