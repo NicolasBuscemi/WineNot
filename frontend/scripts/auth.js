@@ -10,8 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileInfo = document.getElementById('profile-info');
     const showUpdateFormButton = document.getElementById('show-update-form');
     const updateForm = document.getElementById('update-form');
-    const userNameElement = document.getElementById('user-name');
-    const userEmailElement = document.getElementById('user-email');
     const userUsernameElement = document.getElementById('user-username');
     const showDeleteConfirmLink = document.getElementById('show-delete-confirm');
     const deleteConfirm = document.getElementById('delete-confirm');
@@ -36,8 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
         profileInfo,
         showUpdateFormButton,
         updateForm,
-        userNameElement,
-        userEmailElement,
         userUsernameElement,
         showDeleteConfirmLink,
         deleteConfirm,
@@ -52,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkAuthentication() {
         console.log('Checking authentication:', userData);
 
-        if (!loginSignupForms || !profileInfo || !logoutButton || !showUpdateFormButton || !updateForm || !profileButton || !userNameElement || !userEmailElement || !userUsernameElement) {
+        if (!loginSignupForms || !profileInfo || !logoutButton || !showUpdateFormButton || !updateForm || !profileButton || !userUsernameElement) {
             console.error('One or more elements are missing in the DOM', {
                 profileButton,
                 profileSection,
@@ -65,8 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 profileInfo,
                 showUpdateFormButton,
                 updateForm,
-                userNameElement,
-                userEmailElement,
                 userUsernameElement,
                 showDeleteConfirmLink,
                 deleteConfirm,
@@ -79,8 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (userData) {
             loginSignupForms.style.display = 'none';
             profileInfo.style.display = 'block';
-            userNameElement.textContent = userData.name;
-            userEmailElement.textContent = userData.email;
             userUsernameElement.textContent = userData.username;
             logoutButton.style.display = 'inline-block';
             showUpdateFormButton.style.display = 'inline-block';
@@ -173,8 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     signupForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const name = document.getElementById('signup-name').value;
-        const email = document.getElementById('signup-email').value;
         const username = document.getElementById('signup-username').value;
         const password = document.getElementById('signup-password').value;
 
@@ -185,8 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name,
-                    email,
                     username,
                     password
                 })

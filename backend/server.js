@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -20,7 +19,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
-app.use('/api', wineRoutes);
+app.use('/api/wines', wineRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
 
@@ -30,16 +29,15 @@ app.use((req, res, next) => {
 });
 
 // MongoDB connection
-console.log('MONGO_URI:', process.env.MONGO_URI);
-
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  console.log('MongoDB connected to db');
-}).catch((error) => {
-  console.error('Error connecting to MongoDB:', error);
-});
+  serverSelectionTimeoutMS: 5000,  // Verhoog de timeout instelling hier
+})
+  .then(() => {
+    console.log('MongoDB connected to db');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error);
+  });
 
 // Start server
 app.listen(PORT, () => {

@@ -13,7 +13,7 @@ router.post('/login', authUser);
 router.get('/profile', protect, getUserProfile);
 
 // Update User Profile
-router.patch('/profile', protect, updateUserProfile);
+router.put('/profile', protect, updateUserProfile);
 
 // Delete User Profile
 router.delete('/profile', protect, deleteUserProfile);

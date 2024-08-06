@@ -89,8 +89,6 @@
                     </form>
                     <form id="signup-form" style="display: none;">
                         <h2>Sign Up</h2>
-                        <input type="text" id="signup-name" name="name" placeholder="Name" required>
-                        <input type="email" id="signup-email" name="email" placeholder="Email" required>
                         <input type="text" id="signup-username" name="username" placeholder="Username" required>
                         <input type="password" id="signup-password" name="password" placeholder="Password" required>
                         <p id="signup-error" class="error-message"></p>
@@ -99,8 +97,7 @@
                     </form>
                 </div>
                 <div id="profile-info" style="display: none;">
-                    <h2>Hi, <span id="user-name"></span></h2>
-                    <p>Email: <span id="user-email"></span></p>
+                    <h2>Hi, <span id="user-username"></span></h2>
                     <p>Username: <span id="user-username"></span></p>
                     <p>You want to delete your account? <a href="#" id="show-delete-confirm">Click here</a></p>
                     <div id="delete-confirm" style="display: none;">
