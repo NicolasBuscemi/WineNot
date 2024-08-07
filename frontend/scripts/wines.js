@@ -1,4 +1,3 @@
-// frontend/scripts/wines.js
 document.addEventListener("DOMContentLoaded", async function () {
     const wineNotContainer = document.createElement('div');
     wineNotContainer.className = 'wine-not-container';
@@ -6,29 +5,54 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.body.appendChild(wineNotContainer);
 
     async function fetchWines(type) {
-        const response = await fetch(`https://api.sampleapis.com/wines/${type}`);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch ${type} wines`);
+        try {
+            const response = await fetch(`https://api.sampleapis.com/wines/${type}`);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ${type} wines`);
+            }
+            return response.json();
+        } catch (error) {
+            console.error(error.message);
+            return [];
         }
-        return response.json();
+    }
+
+    async function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     async function fetchAllWines() {
         try {
-            const [reds, whites, roses, bubbles, desserts] = await Promise.all([
-                fetchWines('reds'),
-                fetchWines('whites'),
-                fetchWines('rose'),
-                fetchWines('sparkling'),
-                fetchWines('dessert')
-            ]);
-            return { reds, whites, roses, bubbles, desserts };
+            const reds = await fetchWines('reds');
+            await delay(1000);
+            const whites = await fetchWines('whites');
+            await delay(1000);
+            const roses = await fetchWines('rose');
+            await delay(1000);
+            const bubbles = await fetchWines('sparkling');
+            await delay(1000);
+            const desserts = await fetchWines('dessert');
+
+            return {
+                reds,
+                whites,
+                roses,
+                bubbles,
+                desserts
+            };
         } catch (error) {
             console.error('Error fetching wines:', error);
+            return {};
         }
     }
 
-    const { reds, whites, roses, bubbles, desserts } = await fetchAllWines();
+    const {
+        reds,
+        whites,
+        roses,
+        bubbles,
+        desserts
+    } = await fetchAllWines();
     const wineContainer = document.querySelector('.wine-container');
 
     function createWineEntry(wine, type) {
@@ -37,6 +61,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         wineEntry.dataset.type = type;
         wineEntry.dataset.region = wine.location || 'Unknown';
         wineEntry.dataset.winery = wine.winery || 'Unknown Winery';
+        wineEntry.dataset.year = wine.year || 'Unknown Year';
         wineEntry.innerHTML = `
             <div class="wine-info">
                 <h3>${wine.wine}</h3>
@@ -50,31 +75,128 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function renderWines(wines, type) {
-        wineContainer.innerHTML = ''; // Clear the container
-        wines.forEach(wine => wineContainer.appendChild(createWineEntry(wine, type)));
+        wineContainer.innerHTML = '';
+        if (wines) {
+            wines.forEach(wine => wineContainer.appendChild(createWineEntry(wine, type)));
+        }
     }
 
-    renderWines(reds, 'red'); // Default to reds
+    if (reds) renderWines(reds, 'red');
 
-    function openModal(wine, type) {
+    async function fetchReviews(wineId) {
+        try {
+            const response = await fetch(`http://localhost:3001/api/wine-reviews/${wineId}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch reviews');
+            }
+            return response.json();
+        } catch (error) {
+            console.error(error.message);
+            return [];
+        }
+    }
+
+    function displayReviews(reviews, container) {
+        const reviewsContainer = document.createElement('div');
+        reviewsContainer.className = 'reviews-container';
+
+        reviews.forEach(review => {
+            const reviewElement = document.createElement('div');
+            reviewElement.className = 'review';
+            reviewElement.innerHTML = `
+                <p><strong>${review.userId.username}:</strong> ${review.review}</p>
+                <p>Rating: ${review.rating}/5</p>
+            `;
+            reviewsContainer.appendChild(reviewElement);
+        });
+
+        container.appendChild(reviewsContainer);
+    }
+
+    async function openModal(wine, type) {
         const modal = document.getElementById("wineModal");
         const modalContent = modal.querySelector(".modal-content");
 
         modalContent.innerHTML = `
-            <div class="modal-text">
-                <h2 id="modalWineName">${wine.wine}</h2>
-                <div id="modalWineType">Type: ${type}</div>
-                <div id="modalWineRegion">Region: ${wine.location || 'Unknown'}</div>
-                <div id="modalWineRating">Rating: ${wine.rating.average || 'N/A'}/5</div>
-                <div id="modalWineWinery">Winery: ${wine.winery || 'Unknown Winery'}</div>
-            </div>
-            <div class="modal-image">
-                <img id="modalWineImage" src="${wine.image || 'path/to/placeholder.png'}" alt="${wine.wine}">
+            <div class="modal-header">
+                <div class="modal-text">
+                    <h2 id="modalWineName">${wine.wine}</h2>
+                    <div id="modalWineType">${type}</div>
+                    <div id="modalWineRegion">${wine.location || 'Unknown'}</div>
+                    <div id="modalWineWinery">${wine.winery || 'Unknown Winery'}</div>
+                    <div id="modalWineRating">${wine.rating.average || 'N/A'}/5</div>
+                    <button id="add-review-button" class="btn">Add Review</button>
+                    <form id="review-form" style="display: none;">
+                        <textarea id="review-text" placeholder="Write your review here" required></textarea>
+                        <label for="rating">Rating:</label>
+                        <input type="number" id="rating" min="1" max="5" required>
+                        <button type="submit">Submit Review</button>
+                    </form>
+                </div>
+                <div class="modal-image">
+                    <img id="modalWineImage" src="${wine.image || 'path/to/placeholder.png'}" alt="${wine.wine}">
+                </div>
             </div>
             <span class="close-button">&times;</span>
         `;
 
         modal.style.display = "block";
+
+        const reviewsContainer = document.querySelector(".reviews-container");
+        reviewsContainer.innerHTML = ''; // Clear previous reviews
+
+        const reviews = await fetchReviews(wine.id);
+        displayReviews(reviews, reviewsContainer);
+
+        const addReviewButton = modal.querySelector('#add-review-button');
+        const reviewForm = modal.querySelector('#review-form');
+        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        addReviewButton.addEventListener('click', () => {
+            if (!userData || !userData.token) {
+                alert('You need to be logged in to add a review.');
+                return;
+            }
+            reviewForm.style.display = 'block';
+            addReviewButton.style.display = 'none';
+        });
+
+        reviewForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const reviewText = document.getElementById('review-text').value;
+            const rating = document.getElementById('rating').value;
+
+            try {
+                const response = await fetch('http://localhost:3001/api/wine-reviews', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${userData.token}`
+                    },
+                    body: JSON.stringify({
+                        wineId: wine.id,
+                        rating: rating,
+                        review: reviewText
+                    }),
+                });
+
+                if (response.ok) {
+                    alert('Review added successfully');
+                    const newReview = await response.json();
+                    displayReviews([newReview], reviewsContainer);
+                    reviewForm.reset();
+                    reviewForm.style.display = 'none';
+                    addReviewButton.style.display = 'block';
+                } else {
+                    const errorResponse = await response.json();
+                    console.error('Failed to add review:', errorResponse);
+                }
+            } catch (error) {
+                console.error('Error adding review:', error);
+            }
+        });
+
         modal.querySelector(".close-button").addEventListener("click", () => {
             modal.style.display = "none";
         });
@@ -88,7 +210,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     });
 
-    // Filter buttons functionality
     const filterButtons = document.querySelectorAll(".filter-btn");
 
     function filterWinesAndColor(button) {
