@@ -99,19 +99,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     function displayReviews(reviews, container) {
         const reviewsContainer = document.createElement('div');
         reviewsContainer.className = 'reviews-container';
-
+    
         reviews.forEach(review => {
             const reviewElement = document.createElement('div');
             reviewElement.className = 'review';
             reviewElement.innerHTML = `
-                <p><strong>${review.userId.username}:</strong> ${review.review}</p>
-                <p>Rating: ${review.rating}/5</p>
+                <div class="username">${review.userId.username}</div>
+                <div class="rating">${'★'.repeat(review.rating)}</div>
+                <div class="review-text">${review.review}</div>
             `;
             reviewsContainer.appendChild(reviewElement);
         });
-
+    
         container.appendChild(reviewsContainer);
     }
+    
 
     async function openModal(wine, type) {
         const modal = document.getElementById("wineModal");
@@ -128,9 +130,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <button id="add-review-button" class="btn">Add Review</button>
                     <form id="review-form" style="display: none;">
                         <textarea id="review-text" placeholder="Write your review here" required></textarea>
-                        <label for="rating">Rating:</label>
+                        <label for="rating"></label>
                         <input type="number" id="rating" min="1" max="5" required>
-                        <button type="submit">Submit Review</button>
+                        <button type="submit">SUBMIT</button>
                     </form>
                 </div>
                 <div class="modal-image">
