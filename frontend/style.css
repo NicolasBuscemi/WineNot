@@ -592,19 +592,16 @@ footer {
 
 /* Modal Styles */
 .modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding-top: 60px;
-    overflow: auto;
+    display: none;
     position: fixed;
     z-index: 2;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-top: 60px;
 }
 
 .modal-content {
@@ -1345,5 +1342,49 @@ ul#review-list .review-item .review-actions button:hover {
 
     100% {
         transform: translateX(-100%);
+    }
+}
+
+/* Loading Screen Styles */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    flex-direction: column;
+}
+
+.loading-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.loading-bar {
+    width:100%;
+    background: #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+}
+
+.loading-progress {
+    width: 0;
+    height: 100%;
+    background: var(--primary-color);
+    animation: loading 3s linear forwards;
+}
+
+@keyframes loading {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
     }
 }

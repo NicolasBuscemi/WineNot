@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     wineNotContainer.innerHTML = '<h1>WINE NOT</h1>';
     document.body.appendChild(wineNotContainer);
 
+    const loadingElement = document.getElementById('loading');
+
     async function fetchWines(type) {
         try {
             const response = await fetch(`https://api.sampleapis.com/wines/${type}`);
@@ -81,8 +83,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    if (reds) renderWines(reds, 'red');
-
     async function fetchReviews(wineId) {
         try {
             const response = await fetch(`http://localhost:3001/api/wine-reviews/${wineId}`);
@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     
         container.appendChild(reviewsContainer);
     }
-    
 
     async function openModal(wine, type) {
         const modal = document.getElementById("wineModal");
@@ -201,7 +200,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         modal.querySelector(".close-button").addEventListener("click", () => {
             modal.style.display = "none";
+            document.body.style.overflow = 'auto'; // Enable scrolling again
+            modal.style.backgroundColor = ''; // Reset background color
         });
+
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'; // Set modal background color
     }
 
     const modal = document.getElementById("wineModal");
@@ -209,6 +213,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     window.addEventListener("click", (event) => {
         if (event.target === modal) {
             modal.style.display = "none";
+            document.body.style.overflow = 'auto'; // Enable scrolling again
+            modal.style.backgroundColor = ''; // Reset background color
         }
     });
 
@@ -252,4 +258,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             filterWinesAndColor(button);
         });
     });
+      
+    // Set initial filter to red
+    filterWinesAndColor(filterButtons[0]);
+
+    loadingElement.style.display = 'none';
 });
