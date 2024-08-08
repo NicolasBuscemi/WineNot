@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const Review = require('../models/reviewModel');
 const { body, validationResult } = require('express-validator');
 
 const generateToken = (id) => {
@@ -124,10 +125,10 @@ exports.deleteUserProfile = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
+        await Review.deleteMany({ userId: req.user.id });
+        await user.remove();
 
-        await User.deleteOne({ _id: req.user.id });
-
-        res.json({ message: 'User removed' });
+        res.json({ message: 'User and associated reviews removed' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

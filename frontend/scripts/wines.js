@@ -99,18 +99,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     function displayReviews(reviews, container) {
         const reviewsContainer = document.createElement('div');
         reviewsContainer.className = 'reviews-container';
-    
+
         reviews.forEach(review => {
-            const reviewElement = document.createElement('div');
-            reviewElement.className = 'review';
-            reviewElement.innerHTML = `
-                <div class="username">${review.userId.username}</div>
-                <div class="rating">${'★'.repeat(review.rating)}</div>
-                <div class="review-text">${review.review}</div>
-            `;
-            reviewsContainer.appendChild(reviewElement);
+            if (review.userId) {  // Only display review if user exists
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'review';
+                reviewElement.innerHTML = `
+                    <div class="username">${review.userId.username}</div>
+                    <div class="rating">${'★'.repeat(review.rating)}</div>
+                    <div class="review-text">${review.review}</div>
+                `;
+                reviewsContainer.appendChild(reviewElement);
+            }
         });
-    
+
         container.appendChild(reviewsContainer);
     }
 
@@ -126,13 +128,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <div id="modalWineRegion">${wine.location || 'Unknown'}</div>
                     <div id="modalWineWinery">${wine.winery || 'Unknown Winery'}</div>
                     <div id="modalWineRating">${wine.rating.average || 'N/A'}/5</div>
-                    <button id="add-review-button" class="btn">Add Review</button>
-                    <form id="review-form" style="display: none;">
-                        <textarea id="review-text" placeholder="Write your review here" required></textarea>
-                        <label for="rating"></label>
-                        <input type="number" id="rating" min="1" max="5" required>
-                        <button type="submit">SUBMIT</button>
-                    </form>
                 </div>
                 <div class="modal-image">
                     <img id="modalWineImage" src="${wine.image || 'path/to/placeholder.png'}" alt="${wine.wine}">
@@ -141,16 +136,31 @@ document.addEventListener("DOMContentLoaded", async function () {
             <span class="close-button">&times;</span>
         `;
 
+        const modalFooter = document.createElement('div');
+        modalFooter.className = 'modal-footer';
+        modalFooter.innerHTML = `
+            <button id="add-review-button" class="btn">ADD REVIEW</button>
+            <form id="review-form" style="display: none;">
+                <textarea id="review-text" placeholder="Write your review here" required></textarea>
+                
+                <input type="number" id="rating" min="1" max="5" placeholder="Rating" required>
+                <button type="submit">SUBMIT</button>
+            </form>
+            <div class="reviews-container"></div>
+        `;
+        
+        modal.appendChild(modalFooter);
+
         modal.style.display = "block";
 
-        const reviewsContainer = document.querySelector(".reviews-container");
-        reviewsContainer.innerHTML = ''; // Clear previous reviews
+        const reviewsContainer = modalFooter.querySelector(".reviews-container");
+        reviewsContainer.innerHTML = ''; 
 
         const reviews = await fetchReviews(wine.id);
         displayReviews(reviews, reviewsContainer);
 
-        const addReviewButton = modal.querySelector('#add-review-button');
-        const reviewForm = modal.querySelector('#review-form');
+        const addReviewButton = modalFooter.querySelector('#add-review-button');
+        const reviewForm = modalFooter.querySelector('#review-form');
         const userData = JSON.parse(localStorage.getItem('userData'));
 
         addReviewButton.addEventListener('click', () => {
@@ -189,6 +199,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     reviewForm.reset();
                     reviewForm.style.display = 'none';
                     addReviewButton.style.display = 'block';
+                    location.reload();  
                 } else {
                     const errorResponse = await response.json();
                     console.error('Failed to add review:', errorResponse);
@@ -200,12 +211,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         modal.querySelector(".close-button").addEventListener("click", () => {
             modal.style.display = "none";
-            document.body.style.overflow = 'auto'; // Enable scrolling again
-            modal.style.backgroundColor = ''; // Reset background color
+            document.body.style.overflow = 'auto'; 
+            modal.style.backgroundColor = ''; 
+            modalFooter.remove();  
         });
 
-        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'; // Set modal background color
+        document.body.style.overflow = 'hidden'; 
+        modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'; 
     }
 
     const modal = document.getElementById("wineModal");
@@ -213,8 +225,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     window.addEventListener("click", (event) => {
         if (event.target === modal) {
             modal.style.display = "none";
-            document.body.style.overflow = 'auto'; // Enable scrolling again
-            modal.style.backgroundColor = ''; // Reset background color
+            document.body.style.overflow = 'auto'; 
+            modal.style.backgroundColor = ''; 
         }
     });
 
@@ -259,7 +271,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     });
       
-    // Set initial filter to red
     filterWinesAndColor(filterButtons[0]);
 
     loadingElement.style.display = 'none';

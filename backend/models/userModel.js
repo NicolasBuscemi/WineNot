@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Review = require('./reviewModel');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -25,6 +26,15 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
+
+userSchema.pre('remove', async function(next) {
+  try {
+    await mongoose.model('Review').deleteMany({ userId: this._id });
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 const User = mongoose.model('User', userSchema);
 
