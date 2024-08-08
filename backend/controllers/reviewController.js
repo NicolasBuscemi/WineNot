@@ -1,4 +1,3 @@
-// backend/controllers/reviewController.js
 const Review = require('../models/reviewModel');
 
 // Get all reviews

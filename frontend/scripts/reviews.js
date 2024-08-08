@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateReviewForm = document.getElementById('update-review-form');
     const reviewList = document.getElementById('review-list');
     const loginPrompt = document.getElementById('login-prompt');
-    const createReviewButton = document.getElementById('create-review-button'); // Voeg deze regel toe
+    const createReviewButton = document.getElementById('create-review-button'); 
     const API_URL = 'http://localhost:3001/api/reviews';
     let currentReviewId = null;
 
@@ -11,18 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const userData = JSON.parse(localStorage.getItem('userData'));
         if (userData && userData.token) {
             loginPrompt.style.display = 'none';
-            createReviewButton.style.display = 'block'; // Verberg het formulier, toon de knop
+            createReviewButton.style.display = 'block'; 
             console.log('User logged in.');
         } else {
             reviewForm.style.display = 'none';
             updateReviewForm.style.display = 'none';
-            createReviewButton.style.display = 'none'; // Verberg de knop wanneer niet ingelogd
+            createReviewButton.style.display = 'none';
             loginPrompt.style.display = 'block';
             console.log('User not logged in.');
         }
     }
 
-    checkLoginStatus(); // Initial check
+    checkLoginStatus(); 
 
     const userData = JSON.parse(localStorage.getItem('userData'));
     const token = userData ? userData.token : null;
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     createReviewButton.addEventListener('click', () => {
         reviewForm.style.display = 'block';
-        createReviewButton.style.display = 'none'; // Verberg de knop wanneer het formulier wordt weergegeven
+        createReviewButton.style.display = 'none'; 
     });
 
     reviewForm.addEventListener('submit', async (event) => {
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 fetchReviews();
                 reviewForm.reset();
                 reviewForm.style.display = 'none';
-                createReviewButton.style.display = 'block'; // Toon de knop weer na het indienen van het formulier
+                createReviewButton.style.display = 'block'; 
             } else {
                 console.error('Failed to add review:', await response.json());
             }
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch(API_URL);
             const reviews = await response.json();
-            reviewList.innerHTML = ''; // Clear existing reviews
+            reviewList.innerHTML = ''; 
 
             reviews.forEach(review => {
                 const li = document.createElement('li');
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         reviewForm.style.display = 'none';
     };
 
-    updateReviewForm.addEventListener('submit', async function(event) { // Changed to function keyword
+    updateReviewForm.addEventListener('submit', async function(event) { 
         event.preventDefault();
 
         const name = document.getElementById('update-wine-name').value;
@@ -183,9 +183,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    fetchReviews(); // Initial fetch of reviews
+    fetchReviews(); 
 
-    // Listen for logout event to update UI
+   
     window.addEventListener('storage', (event) => {
         if (event.key === 'userData' && !event.newValue) {
             checkLoginStatus();

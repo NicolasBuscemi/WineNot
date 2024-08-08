@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    // Fetch wines from multiple APIs
+    
     async function fetchWines() {
         try {
             const endpoints = [
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                 wines = wines.concat(winesWithColor);
             });
 
-            // Filter out the wine you don't want
+            
             const filteredWines = wines.filter(wine => wine.wine !== "WineToExclude");
 
-            // Sort by average rating and handle undefined ratings
+            
             return filteredWines.sort((a, b) => {
                 const aRating = a.rating && a.rating.average ? a.rating.average : 0;
                 const bRating = b.rating && b.rating.average ? b.rating.average : 0;
@@ -53,13 +53,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const top10Wines = await fetchWines();
 
-    // Check if there are wines to display
+    
     if (top10Wines.length === 0) {
         console.error('No wines available to display');
         return;
     }
 
-    // Populate the top 10 wines section
+ 
     const slideshowContainer = document.querySelector('.slideshow');
 
     function createTop10Entry(wine, index) {
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         slideshowContainer.appendChild(createTop10Entry(wine, index));
     });
 
-    // Slide show functionality
+ 
     const slides = document.querySelectorAll('.top10-box');
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (slides.length === 0) console.error("No slides found");
     }
 
-    // Smooth scroll functionality for anchor links
+    
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();

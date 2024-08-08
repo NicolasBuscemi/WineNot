@@ -1,5 +1,3 @@
-// frontend/scripts/profile.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const profileButton = document.getElementById('profile-button');
     const profileModal = document.getElementById('profile-modal');
@@ -110,5 +108,5 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleSections();
     });
 
-    toggleSections(); // Initial check
+    toggleSections(); 
 });

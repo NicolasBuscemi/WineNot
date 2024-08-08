@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const signupError = document.getElementById('signup-error');
     const updateError = document.getElementById('update-error');
 
-    let userData = JSON.parse(localStorage.getItem('userData')); // Store user data in localStorage
+    let userData = JSON.parse(localStorage.getItem('userData')); 
 
-    // Log all elements to check their presence
+    
     console.log('Elements:', {
         profileButton,
         profileSection,
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateError
     });
 
-    // Check if the user is authenticated
+    
     function checkAuthentication() {
         console.log('Checking authentication:', userData);
 
@@ -121,10 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('userData'); // Clear user data from localStorage
-        userData = null; // Clear user data
+        localStorage.removeItem('userData'); 
+        userData = null; 
         profileSection.style.display = 'none';
-        window.location.reload(); // Refresh the page
+        window.location.reload(); 
     });
 
     loginForm.addEventListener('submit', async (e) => {
@@ -146,10 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
             if (response.ok) {
-                userData = data; // Store user data
-                localStorage.setItem('userData', JSON.stringify(userData)); // Save user data to localStorage
+                userData = data; 
+                localStorage.setItem('userData', JSON.stringify(userData)); 
                 profileSection.style.display = 'none';
-                window.location.reload(); // Refresh the page
+                window.location.reload(); 
                 loginError.textContent = '';
                 loginError.style.display = 'none';
             } else {
@@ -183,10 +183,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
             if (response.ok) {
-                userData = data; // Store user data
-                localStorage.setItem('userData', JSON.stringify(userData)); // Save user data to localStorage
+                userData = data; 
+                localStorage.setItem('userData', JSON.stringify(userData)); 
                 profileSection.style.display = 'none';
-                window.location.reload(); // Refresh the page
+                window.location.reload(); 
                 signupError.textContent = '';
                 signupError.style.display = 'none';
             } else {
@@ -221,10 +221,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const data = await response.json();
             if (response.ok) {
-                userData = data; // Update user data
-                localStorage.setItem('userData', JSON.stringify(userData)); // Update user data in localStorage
+                userData = data; 
+                localStorage.setItem('userData', JSON.stringify(userData)); 
                 profileInfo.style.display = 'block';
-                updateForm.style.display = 'none'; // Hide update form after successful update
+                updateForm.style.display = 'none'; 
                 checkAuthentication();
                 updateError.textContent = '';
                 updateError.style.display = 'none';
@@ -254,10 +254,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                localStorage.removeItem('userData'); // Clear user data from localStorage
-                userData = null; // Clear user data
+                localStorage.removeItem('userData'); 
+                userData = null; 
                 profileSection.style.display = 'none';
-                window.location.reload(); // Refresh the page
+                window.location.reload(); 
             } else {
                 console.error('Failed to delete account');
             }
@@ -272,5 +272,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    checkAuthentication(); // Check authentication status on page load
+    checkAuthentication(); 
 });

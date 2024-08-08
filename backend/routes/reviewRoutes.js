@@ -1,8 +1,8 @@
-// backend/routes/reviewRoutes.js
+
 const express = require('express');
 const router = express.Router();
-const { protect } = require('../middleware/authMiddleware'); // Corrected import
-const { getReviews, addReview, updateReview, deleteReview } = require('../controllers/reviewController'); // Corrected import
+const { protect } = require('../middleware/authMiddleware'); 
+const { getReviews, addReview, updateReview, deleteReview } = require('../controllers/reviewController'); 
 
 router.route('/')
   .get(getReviews)

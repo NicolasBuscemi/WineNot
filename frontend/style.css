@@ -138,6 +138,7 @@ nav {
     margin: 0;
     white-space: nowrap;
     animation: bannerAnimation 15s linear infinite;
+
 }
 
 @keyframes bannerAnimation {
@@ -646,6 +647,7 @@ footer {
     object-fit: cover;
     border-radius: 10px;
 }
+
 .modal-footer {
     display: flex;
     flex-direction: column;
@@ -657,7 +659,7 @@ footer {
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    
+
 }
 
 .btn {
@@ -668,9 +670,9 @@ footer {
     font-size: var(--font-size);
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     display: inline-block;
-    
+
 }
 
 .btn:hover {
@@ -678,39 +680,55 @@ footer {
 }
 
 .reviews-container {
-    position: relative; 
+    position: relative;
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     padding: 20px;
-    
+
     margin-top: 20px;
     border-radius: 10px;
-    
+
 }
 
 .review {
-    position: relative; 
+    position: relative;
     z-index: 10;
-    background-color: var(--white);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 80%;
-    
+    color: white;
+
 }
+
+.rating {
+    color: gold;
+    font-size: 1.2em;
+
+}
+
+.username {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    color: var(--primary-color);
+}
+
 #review-form {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px; 
+    gap: 15px;
     margin-top: 20px;
     width: 100%;
     max-width: 800px;
-    padding: 20px ;
+    padding: 20px;
     background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -723,8 +741,8 @@ footer {
     border: 2px solid var(--black);
     border-radius: 5px;
     font-size: 1rem;
-    resize: none; 
-    height: 80px; 
+    resize: none;
+    height: 80px;
 }
 
 #review-form input[type="number"] {
@@ -733,8 +751,8 @@ footer {
     border: 2px solid var(--black);
     border-radius: 5px;
     font-size: 1rem;
-    text-align: center; 
-    height: 40px; 
+    text-align: center;
+    height: 40px;
 }
 
 #review-form button {
@@ -1399,7 +1417,7 @@ ul#review-list .review-item .review-actions button:hover {
 }
 
 .loading-bar {
-    width:100%;
+    width: 100%;
     background: #ccc;
     border-radius: 5px;
     overflow: hidden;
@@ -1417,6 +1435,7 @@ ul#review-list .review-item .review-actions button:hover {
     0% {
         width: 0;
     }
+
     100% {
         width: 100%;
     }

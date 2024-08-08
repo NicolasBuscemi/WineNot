@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         wineEntry.dataset.region = wine.location || 'Unknown';
         wineEntry.dataset.winery = wine.winery || 'Unknown Winery';
         wineEntry.dataset.year = wine.year || 'Unknown Year';
+        wineEntry.dataset.id = `${type}-${wine.id}`; 
         wineEntry.innerHTML = `
             <div class="wine-info">
                 <h3>${wine.wine}</h3>
@@ -101,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         reviewsContainer.className = 'reviews-container';
 
         reviews.forEach(review => {
-            if (review.userId) {  // Only display review if user exists
+            if (review.userId) {  
                 const reviewElement = document.createElement('div');
                 reviewElement.className = 'review';
                 reviewElement.innerHTML = `
@@ -156,7 +157,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const reviewsContainer = modalFooter.querySelector(".reviews-container");
         reviewsContainer.innerHTML = ''; 
 
-        const reviews = await fetchReviews(wine.id);
+        const reviews = await fetchReviews(`${type}-${wine.id}`);
         displayReviews(reviews, reviewsContainer);
 
         const addReviewButton = modalFooter.querySelector('#add-review-button');
@@ -186,7 +187,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         'Authorization': `Bearer ${userData.token}`
                     },
                     body: JSON.stringify({
-                        wineId: wine.id,
+                        wineId: `${type}-${wine.id}`,  
                         rating: rating,
                         review: reviewText
                     }),
@@ -199,7 +200,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     reviewForm.reset();
                     reviewForm.style.display = 'none';
                     addReviewButton.style.display = 'block';
-                    location.reload();  
+                    window.location.reload(); 
                 } else {
                     const errorResponse = await response.json();
                     console.error('Failed to add review:', errorResponse);

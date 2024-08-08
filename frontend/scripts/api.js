@@ -1,4 +1,4 @@
-// frontend/scripts/api.js
+
 async function fetchWines(type) {
     const response = await fetch(`https://api.sampleapis.com/wines/${type}`);
     if (!response.ok) {
