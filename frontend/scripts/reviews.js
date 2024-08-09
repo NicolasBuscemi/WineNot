@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const review = document.getElementById('review').value;
 
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch(`${API_URL}/reviews`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fetchReviews = async () => {
         try {
-            const response = await fetch(API_URL);
+            const response = await fetch(`${API_URL}/reviews`);
             const reviews = await response.json();
             reviewList.innerHTML = ''; 
 
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const review = document.getElementById('update-review').value;
 
         try {
-            const response = await fetch(`${API_URL}/${currentReviewId}`, {
+            const response = await fetch(`${API_URL}/reviews/${currentReviewId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.deleteReview = async (id) => {
         try {
-            const response = await fetch(`${API_URL}/${id}`, {
+            const response = await fetch(`${API_URL}/reviews/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
