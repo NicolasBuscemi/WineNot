@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const wineRoutes = require('./routes/wineRoutes');
 const userRoutes = require('./routes/userRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
@@ -18,10 +19,16 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, '../frontend')));
+
 app.use('/api', wineRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/wine-reviews', wineReviewRoutes);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
+});
 
 app.use((req, res, next) => {
     res.status(404).json({ message: 'Endpoint not found' });
