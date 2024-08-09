@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const reviewList = document.getElementById('review-list');
     const loginPrompt = document.getElementById('login-prompt');
     const createReviewButton = document.getElementById('create-review-button'); 
-    const API_URL = 'http://localhost:3001/api/reviews';
+    const API_URL = 'https://winenot-i5n3.onrender.com/api';
+
     let currentReviewId = null;
 
     function checkLoginStatus() {

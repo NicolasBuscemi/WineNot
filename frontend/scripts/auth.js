@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById('login-password').value;
 
         try {
-            const response = await fetch('http://localhost:3001/api/users/login', {
+            const response = await fetch('https://winenot-i5n3.onrender.com/api/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById('signup-password').value;
 
         try {
-            const response = await fetch('http://localhost:3001/api/users/signup', {
+            const response = await fetch('https://winenot-i5n3.onrender.com/api/users/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById('update-password').value;
 
         try {
-            const response = await fetch('http://localhost:3001/api/users/profile', {
+            const response = await fetch('https://winenot-i5n3.onrender.com/api/users/profile', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     confirmDeleteButton.addEventListener('click', async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/users/profile', {
+            const response = await fetch('https://winenot-i5n3.onrender.com/api/users/profile', {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${userData.token}`

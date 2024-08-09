@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500',
+  origin: 'https://winenot-i5n3.onrender.com',
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 };
 

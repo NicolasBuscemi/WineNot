@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileUsername = document.getElementById('profile-username');
     let user = JSON.parse(localStorage.getItem('user'));
 
-    const API_URL = 'http://localhost:3001/api';
+    const API_URL = 'https://winenot-i5n3.onrender.com/api';
+
 
     const toggleProfileModal = (show) => {
         profileModal.style.display = show ? 'block' : 'none';

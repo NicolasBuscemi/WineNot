@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     async function fetchReviews(wineId) {
         try {
-            const response = await fetch(`http://localhost:3001/api/wine-reviews/${wineId}`);
+            const response = await fetch(`${API_URL}/wine-reviews/${wineId}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch reviews');
             }
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const rating = document.getElementById('rating').value;
 
             try {
-                const response = await fetch('http://localhost:3001/api/wine-reviews', {
+                const response = await fetch('https://winenot-i5n3.onrender.com/api/wine-reviews', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
