@@ -930,7 +930,7 @@ nav {
 .reviews-text-background h1 {
     font-family: 'Tw Cen MT', sans-serif;
     font-size: var(--banner-font-size);
-    color: var(--black);
+    color: var(--primary-color);
     margin: 0;
     animation: bannerAnimation 15s linear infinite;
 }
@@ -949,10 +949,7 @@ nav {
     max-width: 800px;
     margin-top: 50px;
     margin-bottom: 50px;
-    padding: 20px;
-    background-color: var(--white);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
     position: relative;
     z-index: 2;
 }
@@ -1028,7 +1025,8 @@ ul#review-list {
 }
 
 ul#review-list .review-item {
-    background-color: var(--white);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -1173,6 +1171,7 @@ ul#review-list .review-item .review-actions button:hover {
     margin-top: 0;
     font-family: 'Tw Cen MT', sans-serif;
     font-size: var(--large-font-size);
+    
 }
 
 .reviews-button {
