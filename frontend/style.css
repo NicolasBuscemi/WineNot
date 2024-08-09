@@ -33,7 +33,10 @@ body {
 
 h1,
 h2,
-h3,
+h3 {
+    font-family: 'Tw Cen MT', sans-serif;
+    font-size: 2em;
+}
 p,
 a {
     font-family: var(--font-family, 'Helvetica', 'Arial', sans-serif);
@@ -81,23 +84,7 @@ nav {
     color: var(--hover-accent-color);
 }
 
-.navbar-right .discover-button {
-    background-color: var(--black);
-    color: var(--white);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-}
 
-.navbar-right .discover-button:hover {
-    background-color: var(--hover-accent-color);
-    color: var(--black);
-
-}
 
 /* Banner Section */
 .banner-section {
@@ -151,6 +138,8 @@ nav {
     }
 }
 
+
+
 /* About Section */
 #about {
     background-color: var(--white);
@@ -188,10 +177,10 @@ nav {
 }
 
 .about-button {
-    background-color: var(--black);
+    background-color: var(--primary-color);
     color: var(--white);
     border: none;
-    padding: 10px 20px;
+    padding: 7px 20px;
     margin-top: 20px;
     cursor: pointer;
     font-weight: bold;
@@ -204,6 +193,8 @@ nav {
     background-color: var(--hover-accent-color);
     color: var(--white);
 }
+
+
 
 /* Top 10 Section */
 .top10-section {
@@ -281,7 +272,6 @@ nav {
     z-index: -1;
 }
 
-/* Navigation Buttons TOP 10 Slides */
 .navigation-buttons {
     display: flex;
     justify-content: center;
@@ -317,7 +307,6 @@ nav {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    /* Ensure content stays within the section */
 }
 
 .contact-section h1 {
@@ -326,7 +315,6 @@ nav {
     color: var(--black);
     margin-bottom: 10px;
     z-index: 2;
-    /* Ensure the heading stays above the background text */
 }
 
 .contact-container {
@@ -337,7 +325,7 @@ nav {
     width: 100%;
     position: relative;
     z-index: 2;
-    /* Ensure the container content stays above the background text */
+   
 }
 
 .contact-info {
@@ -378,18 +366,22 @@ nav {
 }
 
 .contact-button {
-    background-color: var(--black);
+    background-color: var(--primary-color);
     color: var(--white);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     font-weight: bold;
     align-self: center;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-decoration: none;
 }
 
 .contact-button:hover {
     background-color: var(--hover-accent-color);
 }
+
 
 /* Background Text Animation */
 .contact-text-background {
@@ -424,15 +416,7 @@ nav {
 
 
 
-/* Footer */
-footer {
-    background-color: var(--black);
-    color: var(--white);
-    text-align: center;
-    padding: 10px 0;
-    width: 100%;
-    bottom: 0;
-}
+
 
 
 /* Wines Section */
@@ -481,6 +465,7 @@ footer {
 .wine-entry h3 {
     position: absolute;
     bottom: 10px;
+    font-size: 1em;
     left: 10px;
     right: 10px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -620,6 +605,11 @@ footer {
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+
+.modal h2{
+    color: var(--primary-color);
+    
 }
 
 .modal-text {
@@ -1203,14 +1193,57 @@ ul#review-list .review-item .review-actions button:hover {
     color: var(--white);
 }
 
+/* Loading Screen Styles */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    flex-direction: column;
+}
 
+.loading-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.loading-bar {
+    width: 100%;
+    background: #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 10px;
+}
+
+.loading-progress {
+    width: 0;
+    height: 100%;
+    background: var(--primary-color);
+    animation: loading 3s linear forwards;
+}
+
+@keyframes loading {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
 
 /* Profile Button */
 #profile-button {
     background-color: var(--primary-color);
     color: var(--white);
     border: none;
-    padding: 10px 15px;
+    padding: 7px 15px;
     cursor: pointer;
     font-weight: bold;
     border-radius: 5px;
@@ -1250,7 +1283,7 @@ ul#review-list .review-item .review-actions button:hover {
 }
 
 .login-close-button {
-    color: #aaa;
+    color: #000000;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -1262,7 +1295,7 @@ ul#review-list .review-item .review-actions button:hover {
 
 .login-close-button:hover,
 .login-close-button:focus {
-    color: black;
+    color: var(--hover-accent-color);
 }
 
 /* Form Styles */
@@ -1341,7 +1374,6 @@ ul#review-list .review-item .review-actions button:hover {
     color: red;
     font-size: 0.9em;
     display: none;
-    /* Hidden by default */
 }
 
 /* Centering the buttons */
@@ -1368,11 +1400,8 @@ ul#review-list .review-item .review-actions button:hover {
     width: 100%;
     overflow: hidden;
     background-color: var(--primary-color);
-    /* Adjust background color */
     padding: 10px 0;
-    /* Adjust padding */
     position: relative;
-    /* For positioning the absolute element inside */
 }
 
 .scrolling-text {
@@ -1396,47 +1425,14 @@ ul#review-list .review-item .review-actions button:hover {
     }
 }
 
-/* Loading Screen Styles */
-.loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
+
+
+/* Footer */
+footer {
+    background-color: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 0;
     width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    flex-direction: column;
-}
-
-.loading-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-
-.loading-bar {
-    width: 100%;
-    background: #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    height: 10px;
-}
-
-.loading-progress {
-    width: 0;
-    height: 100%;
-    background: var(--primary-color);
-    animation: loading 3s linear forwards;
-}
-
-@keyframes loading {
-    0% {
-        width: 0;
-    }
-
-    100% {
-        width: 100%;
-    }
+    bottom: 0;
 }

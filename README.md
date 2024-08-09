@@ -2,13 +2,15 @@
 Course project - second term
 
 ## Project Description
-A brief description of your project. What does it do? What problem does it solve?
+WineNot is a web application designed for wine enthusiasts to discover, review, and share their experiences with various wines. The platform allows users to explore wines, read and write reviews, and manage their profiles.
 
 ## Features
-- Feature 1
-- Feature 2
-- Feature 3
-- ...
+- Browse wines by type (red, white, rose, sparkling, dessert)
+- View detailed information about each wine
+- Add and read reviews for specific wines
+- Add and read reviews for your own wines
+- User authentication and profile management
+
 
 ## Installation and Setup Instructions
 1. Clone the repository: `git clone https://github.com/yourusername/yourproject.git`
@@ -18,14 +20,32 @@ A brief description of your project. What does it do? What problem does it solve
 5. Start the server: `npm run start`
 
 ## Usage
-Provide details on how to use your application.
+1. Open your browser and navigate to `http://localhost:3001` after starting the server.
+2. **Log in** or **sign up** to access all features.
+3. Browse wines by selecting a category (red, white, rose, sparkling, dessert).
+4. Click on a wine to view detailed information.
+5. Add reviews to wines by clicking the "Add Review" button (requires login).
+6. Manage your profile and view your reviews by accessing your account.
+
 
 ## API Endpoints
-- **GET /api/reviews**: Retrieve all wine reviews
-- **POST /api/reviews**: Create a new wine review
-- **GET /api/reviews/:id**: Retrieve a specific wine review by ID
-- **PATCH /api/reviews/:id**: Update a specific wine review by ID
-- **DELETE /api/reviews/:id**: Delete a specific wine review by ID
+
+### User Endpoints
+- **POST /api/users/signup**: Create a new user account.
+- **POST /api/users/login**: Log in to an existing user account.
+- **PATCH /api/users/profile**: Update the logged-in user's profile.
+- **DELETE /api/users/profile**: Delete the logged-in user's account along with all associated reviews.
+
+### Wine Review Endpoints (Wines Page)
+- **GET /api/wine-reviews/:wineId**: Retrieve all reviews for a specific wine by its ID.
+- **POST /api/wine-reviews**: Create a new review for a specific wine.
+
+### User Wine Review Endpoints (Reviews Page)
+- **GET /api/reviews**: Retrieve all user-created wine reviews.
+- **POST /api/reviews**: Create a new review for a user-added wine.
+- **GET /api/reviews/:id**: Retrieve a specific user-added wine review by ID.
+- **PATCH /api/reviews/:id**: Update a specific user-added wine review by ID.
+- **DELETE /api/reviews/:id**: Delete a specific user-added wine review by ID.
 
 ## Technologies Used
 - Node.js
@@ -33,19 +53,51 @@ Provide details on how to use your application.
 - MongoDB
 - Mongoose
 - HTML/CSS/JavaScript
-- ...
 
 ## Authors
-- Your Name
+- Nicolas Buscemi
 
 ## License
 This project is licensed under the MIT License.
 
 ## Sources and References
-- [Source 1](http://example.com)
-- [Source 2](http://example.com)
-- ...
+- **Images and Visuals**:
+  - Wine bottle image used in the "About" section: [AboutBottle](http://forgraphictm.com/wine-bottle-mockup/)
+  - AI-generated images "wine-review.png" and "bottleBanner.png" created using [Adobe Firefly](https://www.adobe.com/sensei/generative-ai/firefly.html).
+
+- **API and Data**:
+  - Wine data fetched from [SampleAPIs](https://sampleapis.com/wines/api) for demonstration purposes.
+  - General data handling and API design patterns referenced from [RESTful API Design: Best Practices in API Design with REST](https://restfulapi.net/).
+
+- **Web Development**:
+  - User authentication and management based on practices from [Auth0 documentation](https://auth0.com/docs/).
+  - MongoDB schema design inspired by [Mongoose documentation](https://mongoosejs.com/docs/guide.html).
+  - Responsive web design techniques applied using principles from [CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+  - Loading animations and transitions guided by tutorials from [CSS-Tricks](https://css-tricks.com/almanac/properties/a/animation/).
+  - JavaScript event handling and DOM manipulation inspired by [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
+
+- **Backend Development**:
+  - Node.js and Express.js framework setup and configuration referenced from [Express.js Guide: The Comprehensive Book on Express.js](https://expressjs.com/en/guide/routing.html).
+  - Environment configuration and management using [dotenv](https://www.npmjs.com/package/dotenv).
+  - API request validation and error handling guided by [Express.js Error Handling](https://expressjs.com/en/guide/error-handling.html).
+
+- **Security and Best Practices**:
+  - Authentication and security practices based on [OWASP Top 10](https://owasp.org/www-project-top-ten/).
+  - User session management and token-based authentication guided by [JWT.io](https://jwt.io/introduction/).
+
+- **Project Management**:
+  - Git workflow and version control following best practices from [Pro Git by Scott Chacon and Ben Straub](https://git-scm.com/book/en/v2).
+  - Documentation and README structure referenced from various successful GitHub projects and [Make a README](https://www.makeareadme.com/).
+
+- **Tools**:
+  - IDE: [Visual Studio Code](https://code.visualstudio.com/).
+  - Testing: [Postman](https://www.postman.com/) for API testing.
+  - Design and prototyping: [AdobeXd](https://helpx.adobe.com/fr/xd/get-started.html) for UI/UX design.
+
+- **AI Assistance**:
+  - Portions of code troubleshooting, documentation drafting, and development guidance were supported by [ChatGPT](https://chat.openai.com/).
+
 
 ## Testing Credentials
-- Username: `testuser`
-- Password: `testpassword`
+- Username: `user`
+- Password: `password`
