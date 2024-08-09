@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
-  origin: 'https://winenot-i5n3.onrender.com',
+  origin: '*',
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
 };
 
@@ -30,8 +30,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
 });
 
-app.use((req, res, next) => {
-    res.status(404).json({ message: 'Endpoint not found' });
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ message: 'API endpoint not found' });
 });
 
 mongoose.connect(process.env.MONGO_URI, {
