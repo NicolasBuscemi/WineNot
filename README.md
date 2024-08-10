@@ -5,16 +5,16 @@ Course project - second term
 WineNot is a web application designed for wine enthusiasts to discover, review, and share their experiences with various wines. The platform allows users to explore wines, read and write reviews, and manage their profiles.
 
 ## Features
-- **Browse Wines by Type**: Easily filter and explore wines by their type, including red, white, rosé, bubbles, and dessert.
 - **View Detailed Wine Information**: Access comprehensive details about each wine, such as its origin, year, type, region, and rating.
-- **Top 10 Wines Showcase**: Discover the top-rated wines on our platform through a dynamic slideshow. The background color of each wine changes according to its type—red for red wines, white for white wines, and so on, providing a visually engaging experience.
 - **Add and Read Reviews for Specific Wines**: Users can add their own reviews and read others' reviews on specific wines, enhancing the community-driven experience.
 - **Add and Read Reviews for Your Own Wines**: Have a wine that isn’t listed? Add it yourself and start collecting reviews from other users.
-- **User Authentication and Profile Management**: Secure user authentication ensures that only registered users can add, update, or delete their reviews. Users can manage their profiles and view their submitted reviews.
-- **Loading Animations**: Experience smooth transitions and feedback while browsing the site, with loading animations to enhance user experience.
 - **Error Handling**: Receive clear and informative error messages for failed login attempts or other issues.
 
-
+## Extra features
+- **Browse Wines by Type**: Easily filter and explore wines by their type, including red, white, rosé, bubbles, and dessert.
+- **User Authentication and Profile Management**: Secure user authentication ensures that only registered users can add, update, or delete their reviews. Users can manage their profiles and view their submitted reviews.
+- **Loading Animations**: Experience smooth transitions and feedback while browsing the site, with loading animations to enhance user experience.
+- **Top 10 Wines Showcase**: Discover the top-rated wines on our platform through a dynamic slideshow. The background color of each wine changes according to its type—red for red wines, white for white wines, and so on, providing a visually engaging experience.
 
 ## Installation and Setup Instructions
 1. Clone the repository: `git clone https://github.com/yourusername/yourproject.git`
@@ -24,7 +24,7 @@ WineNot is a web application designed for wine enthusiasts to discover, review, 
 5. Start the server: `npm run start`
 
 ## Usage
-1. Open your browser and navigate to `http://localhost:3001` after starting the server.
+1. Open your browser and navigate to `https://winenot-i5n3.onrender.com` after starting the server.
 2. **Log in** or **sign up** to access all features.
 3. Browse wines by selecting a category (red, white, rose, sparkling, dessert).
 4. Click on a wine to view detailed information.
