@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const userData = JSON.parse(localStorage.getItem('userData'));
     const token = userData ? userData.token : null;
+    const loggedInUserId = userData ? userData.id : null;
+
     console.log('Token:', token);
 
     createReviewButton.addEventListener('click', () => {
@@ -94,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <p class="review-text">${review.review}</p>
                     <p class="wine-info">Type: ${review.type}, Region: ${review.region}</p>
-                    ${userData ? `
+                    ${userData && review.userId === loggedInUserId ? `
                         <div class="review-actions">
                             <button class="update-button" onclick="showUpdateForm('${review._id}', '${review.name}', ${review.year}, '${review.type}', '${review.region}', ${review.rating}, '${review.review}')">
                                 Update
@@ -186,7 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetchReviews(); 
 
-   
     window.addEventListener('storage', (event) => {
         if (event.key === 'userData' && !event.newValue) {
             checkLoginStatus();
