@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
+    const API_URL = 'https://winenot-i5n3.onrender.com/api';  // Define the API_URL at the top
     const wineNotContainer = document.createElement('div');
     wineNotContainer.className = 'wine-not-container';
     wineNotContainer.innerHTML = '<h1>WINE NOT</h1>';
@@ -180,7 +181,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const rating = document.getElementById('rating').value;
 
             try {
-                const response = await fetch('https://winenot-i5n3.onrender.com/api/wine-reviews', {
+                const response = await fetch(`${API_URL}/wine-reviews`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
