@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <p class="review-text">${review.review}</p>
                     <p class="wine-info">Type: ${review.type}, Region: ${review.region}</p>
-                    ${userData && review.userId === loggedInUserId ? `
+                     ${(userData && userData.userId === review.userId) ? `
                         <div class="review-actions">
                             <button class="update-button" onclick="showUpdateForm('${review._id}', '${review.name}', ${review.year}, '${review.type}', '${review.region}', ${review.rating}, '${review.review}')">
                                 Update
